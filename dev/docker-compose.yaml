@@ -1,0 +1,10 @@
+version: '3.1'
+services:
+  smart-cupboard-pg:
+    image: postgres:10
+    environment:
+      POSTGRES_DB: smart-cupboard
+    volumes:
+      - "./data:/var/lib/postgresql/data/"
+    ports:
+      - 5435:5432
