@@ -12,14 +12,15 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/users")
-    public ResponseEntity<List<UserDto>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAll());
+    @PostMapping("/sign-in")
+    public ResponseEntity<?> authorization(@RequestBody @Valid ObtainTokenCommand command) {
+        return ResponseEntity.ok(userService.obtainToken(command));
     }
 
-    @GetMapping("/users/{userId}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable Long userId) {
-        return ResponseEntity.ok(userService.getById(userId));
+    @PostMapping("/forgot-password")
+    public ResponseEntity<Void> forgotPassword(@RequestBody @Valid ForgotPasswordCommand command) {
+        userService.createPassword(command);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/users/current")
@@ -40,34 +41,32 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/sign-in")
-    public ResponseEntity<?> authorization(@RequestBody @Valid ObtainTokenCommand command) {
-        return ResponseEntity.ok(userService.obtainToken(command));
-    }
-
-    @PostMapping("/forgot-password")
-    public ResponseEntity<Void> forgotPassword(@RequestBody @Valid ForgotPasswordCommand command) {
-        userService.createPassword(command);
-        return ResponseEntity.ok().build();
-    }
-
     // Admin
+
+    @PostMapping("/users/invite")
+    public ResponseEntity<UserDto> createUser(@RequestBody @Valid CreateUserCommand command) {
+        return ResponseEntity.ok(userService.create(command));
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAll());
+    }
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.getById(userId));
+    }
+
     @PatchMapping("/users/{userId}")
     public ResponseEntity<UserDto> updateUserById(@PathVariable Long userId,
                                                   @RequestBody @Valid UpdateUserCommand command) {
         return ResponseEntity.ok(userService.updateById(userId, command));
     }
 
-    // Admin
     @DeleteMapping("/users/{userId}")
     public ResponseEntity<Void> deleteUserById(@PathVariable Long userId) {
         userService.deleteById(userId);
         return ResponseEntity.ok().build();
-    }
-
-    // Admin
-    @PostMapping("/users/invite")
-    public ResponseEntity<UserDto> createUser(@RequestBody @Valid CreateUserCommand command) {
-        return ResponseEntity.ok(userService.create(command));
     }
 }

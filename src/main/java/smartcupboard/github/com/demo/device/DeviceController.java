@@ -14,7 +14,7 @@ public class DeviceController {
 
     // Embedded
     @PostMapping("/devices")
-    public ResponseEntity<DeviceDto> registrationDevice(@RequestBody @Valid RegisterDeviceCommand command) {
+    public ResponseEntity<DeviceDto> registrationDevice(@RequestBody @Valid RegistrationDeviceCommand command) {
         return ResponseEntity.ok(deviceService.registration(command));
     }
 
