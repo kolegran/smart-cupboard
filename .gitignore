@@ -2,6 +2,7 @@ HELP.md
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
+/dev/data
 
 ### STS ###
 .apt_generated
@@ -28,3 +29,6 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+
+### jenv ###
+.java-version
