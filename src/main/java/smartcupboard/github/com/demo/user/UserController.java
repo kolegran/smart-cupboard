@@ -3,6 +3,7 @@ package smartcupboard.github.com.demo.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,13 +26,13 @@ public class UserController {
 
     @GetMapping("/users/current")
     public ResponseEntity<UserExtendedDto> getCurrentUserById(@ApiIgnore UserRequestContext context) {
-        return ResponseEntity.ok(userService.getById(context.getId()));
+        return ResponseEntity.ok(userService.getUserById(context.getId()));
     }
 
     @PatchMapping("/users/current")
-    public ResponseEntity<UserDto> updateUserById(@ApiIgnore UserRequestContext context,
+    public ResponseEntity<UserDto> updateCurrentUserById(@ApiIgnore UserRequestContext context,
                                                   @RequestBody @Valid UpdateUserInfoCommand command) {
-        return ResponseEntity.ok(userService.updateById(context, command));
+        return ResponseEntity.ok(userService.updateUserById(context, command));
     }
 
     @PostMapping("/users/current/change-password")
