@@ -19,7 +19,7 @@ public class Cupboard {
     private String title;
 
     @OneToMany(mappedBy = "cupboard")
-    private List<Shelf> shelfs = new ArrayList<>();
+    private List<Shelf> shelves = new ArrayList<>();
 
     @OneToMany(mappedBy = "cupboard")
     private List<Sample> samples = new ArrayList<>();
