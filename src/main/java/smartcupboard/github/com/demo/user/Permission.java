@@ -8,16 +8,13 @@ import java.util.List;
 
 @Entity
 @Data
-public class Role {
+public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
 
-    @ManyToMany
-    private List<Permission> permissions = new ArrayList<>();
-
-    @OneToMany(mappedBy = "role")
-    private List<User> users = new ArrayList<>();
+    @ManyToMany(mappedBy = "permissions")
+    private List<Role> roles = new ArrayList<>();
 }

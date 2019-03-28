@@ -26,13 +26,7 @@ public class Sample {
 
     private Timestamp deletedAt;
 
-    @ManyToOne(optional = false)
-    private Cupboard cupboard;
-
-    @ManyToOne(optional = false)
-    private Shelf shelf;
-
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     private Sector sector;
 
     @OneToOne

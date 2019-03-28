@@ -23,9 +23,9 @@ public class User {
 
     private String lastName;
 
-    @Enumerated(EnumType.STRING)
+    @OneToOne
     private Role role;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "users")
     private List<Cupboard> cupboards = new ArrayList<>();
 }
