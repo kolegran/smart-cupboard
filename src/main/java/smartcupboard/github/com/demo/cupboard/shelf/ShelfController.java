@@ -27,7 +27,7 @@ public class ShelfController {
         return ResponseEntity.ok(shelfService.create(command));
     }
 
-    @PatchMapping("/cupboards/{cupboardId}/shelfs/{shelfId}")
+    @PutMapping("/cupboards/{cupboardId}/shelfs/{shelfId}")
     public ResponseEntity<ShelfDto> updateShelfById(@PathVariable Long shelfId,
                                                 @RequestBody @Valid CreateUpdateShelfCommand command) {
         return ResponseEntity.ok(shelfService.updateById(shelfId, command));

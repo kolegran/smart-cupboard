@@ -29,7 +29,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(context.getId()));
     }
 
-    @PatchMapping("/users/current")
+    @PutMapping("/users/current")
     public ResponseEntity<UserDto> updateCurrentUserById(@ApiIgnore UserRequestContext context,
                                                   @RequestBody @Valid UpdateUserInfoCommand command) {
         return ResponseEntity.ok(userService.updateUserById(context, command));
@@ -59,7 +59,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getById(userId));
     }
 
-    @PatchMapping("/users/{userId}")
+    @PutMapping("/users/{userId}")
     public ResponseEntity<UserDto> updateUserById(@PathVariable Long userId,
                                                   @RequestBody @Valid UpdateUserCommand command) {
         return ResponseEntity.ok(userService.updateById(userId, command));
