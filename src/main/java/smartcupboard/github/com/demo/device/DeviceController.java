@@ -34,7 +34,7 @@ public class DeviceController {
         return ResponseEntity.ok(deviceService.getById(deviceId));
     }
 
-    @PatchMapping("/devices/{deviceId}")
+    @PutMapping("/devices/{deviceId}")
     public ResponseEntity<DeviceDto> updateDeviceById(@PathVariable String deviceId, @RequestBody @Valid UpdateDeviceCommand command) {
         return ResponseEntity.ok(deviceService.update(deviceId, command));
     }
