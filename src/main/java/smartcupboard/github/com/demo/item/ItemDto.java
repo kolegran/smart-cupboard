@@ -7,14 +7,13 @@ import java.sql.Timestamp;
 
 @Getter
 public class ItemDto {
-    private final Long id;
+    private final String id;
     private final String title;
     private final Timestamp createdAt;
     private final Timestamp changedAt;
     private final Timestamp deletedAt;
 
     private final SectorDto sector;
-    //private final RfidDto rfid;
 
     public ItemDto(Item item) {
         this.id = item.getId();

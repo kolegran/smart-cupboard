@@ -2,7 +2,7 @@ package smartcupboard.github.com.demo.device.data;
 
 import lombok.Data;
 import smartcupboard.github.com.demo.device.Device;
-import smartcupboard.github.com.demo.rfid.Rfid;
+import smartcupboard.github.com.demo.item.Item;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -20,9 +20,9 @@ public class DeviceData {
     @ManyToOne(optional = false)
     private Device device;
 
-    @ManyToOne(optional = false)
-    private Rfid rfid;
-
     @Column(nullable = false)
-    private Double value;
+    private Double weight;
+
+    @ManyToOne(optional = false)
+    private Item item;
 }

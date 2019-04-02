@@ -2,17 +2,18 @@ package smartcupboard.github.com.demo.item;
 
 import lombok.Data;
 import smartcupboard.github.com.demo.cupboard.shelf.sector.Sector;
-import smartcupboard.github.com.demo.rfid.Rfid;
+import smartcupboard.github.com.demo.device.data.DeviceData;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String title;
 
@@ -27,6 +28,6 @@ public class Item {
     @OneToOne(optional = false)
     private Sector sector;
 
-    @OneToOne
-    private Rfid rfid;
+    @OneToMany(mappedBy = "item")
+    private List<DeviceData> deviceDataList = new ArrayList<>();
 }
