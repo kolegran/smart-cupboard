@@ -12,16 +12,14 @@ import java.util.List;
 public class DeviceController {
     private final DeviceService deviceService;
 
-    // Embedded
     @PostMapping("/devices")
     public ResponseEntity<DeviceDto> registrationDevice(@RequestBody @Valid RegistrationDeviceCommand command) {
         return ResponseEntity.ok(deviceService.registration(command));
     }
 
-    //Embedded
-    @PostMapping("/devices/command/{deviceId}/event")
-    public ResponseEntity<DeviceDto> deviceEvent(@PathVariable String deviceId, @RequestBody @Valid EventDeviceCommand command) {
-        return ResponseEntity.ok(deviceService.addEvent(deviceId, command));
+    @PostMapping("/devices/{deviceId}/events")
+    public ResponseEntity<DeviceDto> deviceEvent(@PathVariable String deviceId, @RequestBody @Valid List<EventDeviceCommand> command) {
+        return ResponseEntity.ok(deviceService.addEvents(deviceId, command));
     }
 
     @GetMapping("/devices")

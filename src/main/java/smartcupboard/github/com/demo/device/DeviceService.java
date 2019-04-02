@@ -14,7 +14,7 @@ public class DeviceService {
         return null;
     }
 
-    public DeviceDto addEvent(String deviceId, EventDeviceCommand command) {
+    public DeviceDto addEvents(String deviceId, List<EventDeviceCommand> command) {
         return null;
     }
 
