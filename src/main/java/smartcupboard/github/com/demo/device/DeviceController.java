@@ -13,27 +13,27 @@ public class DeviceController {
     private final DeviceService deviceService;
 
     @PostMapping("/devices")
-    public ResponseEntity<DeviceDto> registrationDevice(@RequestBody @Valid RegistrationDeviceCommand command) {
+    public ResponseEntity<DeviceSimpleDto> registrationDevice(@RequestBody @Valid RegistrationDeviceCommand command) {
         return ResponseEntity.ok(deviceService.registration(command));
     }
 
     @PostMapping("/devices/{deviceId}/events")
-    public ResponseEntity<DeviceDto> deviceEvent(@PathVariable String deviceId, @RequestBody @Valid List<EventDeviceCommand> command) {
+    public ResponseEntity<DeviceSimpleDto> deviceEvent(@PathVariable String deviceId, @RequestBody @Valid List<EventDeviceCommand> command) {
         return ResponseEntity.ok(deviceService.addEvents(deviceId, command));
     }
 
     @GetMapping("/devices")
-    public ResponseEntity<List<DeviceDto>> getAllDevices() {
+    public ResponseEntity<List<DeviceSimpleDto>> getAllDevices() {
         return ResponseEntity.ok(deviceService.getAll());
     }
 
     @GetMapping("/devices/{deviceId}")
-    public ResponseEntity<DeviceDto> getDeviceById(@PathVariable String deviceId) {
+    public ResponseEntity<DeviceSimpleDto> getDeviceById(@PathVariable String deviceId) {
         return ResponseEntity.ok(deviceService.getById(deviceId));
     }
 
     @PutMapping("/devices/{deviceId}")
-    public ResponseEntity<DeviceDto> updateDeviceById(@PathVariable String deviceId, @RequestBody @Valid UpdateDeviceCommand command) {
+    public ResponseEntity<DeviceSimpleDto> updateDeviceById(@PathVariable String deviceId, @RequestBody @Valid UpdateDeviceCommand command) {
         return ResponseEntity.ok(deviceService.update(deviceId, command));
     }
 
