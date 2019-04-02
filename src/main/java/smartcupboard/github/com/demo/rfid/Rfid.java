@@ -2,7 +2,7 @@ package smartcupboard.github.com.demo.rfid;
 
 import lombok.Data;
 import smartcupboard.github.com.demo.device.data.DeviceData;
-import smartcupboard.github.com.demo.sample.Sample;
+import smartcupboard.github.com.demo.item.Item;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,7 +21,7 @@ public class Rfid {
     private Timestamp createdAt;
 
     @OneToOne(mappedBy = "rfid")
-    private Sample sample;
+    private Item item;
 
     @OneToMany(mappedBy = "rfid")
     private List<DeviceData> deviceDataList = new ArrayList<>();

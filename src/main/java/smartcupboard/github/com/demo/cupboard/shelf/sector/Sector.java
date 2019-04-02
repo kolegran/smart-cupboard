@@ -2,7 +2,7 @@ package smartcupboard.github.com.demo.cupboard.shelf.sector;
 
 import lombok.Data;
 import smartcupboard.github.com.demo.cupboard.shelf.Shelf;
-import smartcupboard.github.com.demo.sample.Sample;
+import smartcupboard.github.com.demo.item.Item;
 
 import javax.persistence.*;
 
@@ -19,5 +19,5 @@ public class Sector {
     private Shelf shelf;
 
     @OneToOne(mappedBy = "sector")
-    private Sample sample;
+    private Item item;
 }

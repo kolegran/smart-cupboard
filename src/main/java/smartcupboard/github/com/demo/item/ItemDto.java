@@ -1,4 +1,4 @@
-package smartcupboard.github.com.demo.sample;
+package smartcupboard.github.com.demo.item;
 
 import lombok.Getter;
 import smartcupboard.github.com.demo.cupboard.shelf.sector.SectorDto;
@@ -6,7 +6,7 @@ import smartcupboard.github.com.demo.cupboard.shelf.sector.SectorDto;
 import java.sql.Timestamp;
 
 @Getter
-public class SampleDto {
+public class ItemDto {
     private final Long id;
     private final String title;
     private final Timestamp createdAt;
@@ -16,13 +16,13 @@ public class SampleDto {
     private final SectorDto sector;
     //private final RfidDto rfid;
 
-    public SampleDto(Sample sample) {
-        this.id = sample.getId();
-        this.title = sample.getTitle();
-        this.createdAt = sample.getCreatedAt();
-        this.changedAt = sample.getChangedAt();
-        this.deletedAt = sample.getDeletedAt();
+    public ItemDto(Item item) {
+        this.id = item.getId();
+        this.title = item.getTitle();
+        this.createdAt = item.getCreatedAt();
+        this.changedAt = item.getChangedAt();
+        this.deletedAt = item.getDeletedAt();
 
-        this.sector = new SectorDto(sample.getSector());
+        this.sector = new SectorDto(item.getSector());
     }
 }

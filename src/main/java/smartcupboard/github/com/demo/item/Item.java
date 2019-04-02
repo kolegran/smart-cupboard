@@ -1,8 +1,6 @@
-package smartcupboard.github.com.demo.sample;
+package smartcupboard.github.com.demo.item;
 
 import lombok.Data;
-import smartcupboard.github.com.demo.cupboard.Cupboard;
-import smartcupboard.github.com.demo.cupboard.shelf.Shelf;
 import smartcupboard.github.com.demo.cupboard.shelf.sector.Sector;
 import smartcupboard.github.com.demo.rfid.Rfid;
 
@@ -11,7 +9,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Data
-public class Sample {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
