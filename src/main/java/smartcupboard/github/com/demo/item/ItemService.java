@@ -14,11 +14,11 @@ public class ItemService {
         return null;
     }
 
-    public ItemDto getById(Long sampleId) {
+    public ItemDto getById(Long itemId) {
         return null;
     }
 
-    public List<ItemEventDto> getHistory(Long sampleId) {
+    public List<ItemEventDto> getHistory(Long itemId) {
         return null;
     }
 
@@ -26,6 +26,6 @@ public class ItemService {
         return null;
     }
 
-    public void deleteById(Long sampleId) {
+    public void deleteById(Long itemId) {
     }
 }
