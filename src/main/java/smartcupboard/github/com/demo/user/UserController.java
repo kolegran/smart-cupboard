@@ -45,12 +45,12 @@ public class UserController {
     // Admin
 
     @PostMapping("/users/invite")
-    public ResponseEntity<UserDto> createUser(@RequestBody @Valid CreateUserCommand command) {
+    public ResponseEntity<UserDto> createUser(@RequestBody @Valid CreateUpdateUserCommand command) {
         return ResponseEntity.ok(userService.create(command));
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<UserDto>> getAllUsers() {
+    public ResponseEntity<List<UserSimpleDto>> getAllUsers() {
         return ResponseEntity.ok(userService.getAll());
     }
 
@@ -61,7 +61,7 @@ public class UserController {
 
     @PutMapping("/users/{userId}")
     public ResponseEntity<UserDto> updateUserById(@PathVariable Long userId,
-                                                  @RequestBody @Valid UpdateUserCommand command) {
+                                                  @RequestBody @Valid CreateUpdateUserCommand command) {
         return ResponseEntity.ok(userService.updateById(userId, command));
     }
 
