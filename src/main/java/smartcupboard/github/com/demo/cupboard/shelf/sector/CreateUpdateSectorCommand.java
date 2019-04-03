@@ -1,14 +1,15 @@
 package smartcupboard.github.com.demo.cupboard.shelf.sector;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
 
 @Data
 public class CreateUpdateSectorCommand {
-    @NotNull
-    private Long shelfId;
+    @Length(min = 1)
+    private String title;
 
     @NotNull
-    private Long sampleId;
+    private Long shelfId;
 }
