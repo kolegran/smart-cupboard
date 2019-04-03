@@ -12,29 +12,29 @@ import java.util.List;
 public class ItemController {
     private final ItemService itemService;
 
-    @GetMapping("/samples")
-    public ResponseEntity<List<ItemDto>> getAllSamples() {
+    @GetMapping("/items")
+    public ResponseEntity<List<ItemDto>> getAllItems() {
         return ResponseEntity.ok(itemService.getAll());
     }
 
-    @GetMapping("/samples/{sampleId}")
-    public ResponseEntity<ItemDto> getSampleById(@PathVariable Long sampleId) {
-        return ResponseEntity.ok(itemService.getById(sampleId));
+    @GetMapping("/items/{itemId}")
+    public ResponseEntity<ItemDto> getItemById(@PathVariable Long itemId) {
+        return ResponseEntity.ok(itemService.getById(itemId));
     }
 
-    @GetMapping("/samples/{sampleId}/history")
-    public ResponseEntity<List<ItemEventDto>> getSampleHistory(@PathVariable Long sampleId) {
-        return ResponseEntity.ok(itemService.getHistory(sampleId));
+    @GetMapping("/items/{itemId}/history")
+    public ResponseEntity<List<ItemEventDto>> getItemHistory(@PathVariable Long itemId) {
+        return ResponseEntity.ok(itemService.getHistory(itemId));
     }
 
-    @PostMapping("/samples")
-    public ResponseEntity<ItemDto> createSample(@RequestBody @Valid CreateItemCommand command) {
+    @PostMapping("/items")
+    public ResponseEntity<ItemDto> createItem(@RequestBody @Valid CreateItemCommand command) {
         return ResponseEntity.ok(itemService.create(command));
     }
 
-    @DeleteMapping("/samples/{sampleId}")
-    public ResponseEntity<Void> deleteSampleById(@PathVariable Long sampleId) {
-        itemService.deleteById(sampleId);
+    @DeleteMapping("/items/{itemId}")
+    public ResponseEntity<Void> deleteItemById(@PathVariable Long itemId) {
+        itemService.deleteById(itemId);
         return ResponseEntity.ok().build();
     }
 }
