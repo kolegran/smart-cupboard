@@ -13,7 +13,7 @@ public class CupboardController {
     private final CupboardService cupboardService;
 
     @GetMapping("/cupboards")
-    public ResponseEntity<List<CupboardDto>> getAllCupboards() {
+    public ResponseEntity<List<CupboardSimpleDto>> getAllCupboards() {
         return ResponseEntity.ok(cupboardService.getAll());
     }
 
@@ -23,8 +23,13 @@ public class CupboardController {
     }
 
     @PostMapping("/cupboards")
-    public ResponseEntity<CupboardDto> createCupboard(@RequestBody @Valid CreateCupboardCommand command) {
+    public ResponseEntity<CupboardDto> createCupboard(@RequestBody @Valid CreateUpdateCupboardCommand command) {
         return ResponseEntity.ok(cupboardService.create(command));
+    }
+
+    @PutMapping("/cupboards/{cupboardId}")
+    public ResponseEntity<CupboardDto> updateCupboard(@PathVariable Long cupboardId, @RequestBody @Valid CreateUpdateCupboardCommand command) {
+        return ResponseEntity.ok(cupboardService.update(cupboardId, command));
     }
 
     @DeleteMapping("/cupboards/{cupboardId}")
