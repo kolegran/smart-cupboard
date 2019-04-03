@@ -1,4 +1,4 @@
-package smartcupboard.github.com.demo.user;
+package smartcupboard.github.com.demo.role;
 
 import lombok.Data;
 

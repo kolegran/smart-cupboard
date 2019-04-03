@@ -1,6 +1,7 @@
-package smartcupboard.github.com.demo.user;
+package smartcupboard.github.com.demo.role;
 
 import lombok.Data;
+import smartcupboard.github.com.demo.user.User;
 
 import javax.persistence.*;
 import java.util.ArrayList;
