@@ -2,6 +2,7 @@ package smartcupboard.github.com.demo.user;
 
 import lombok.*;
 import smartcupboard.github.com.demo.cupboard.Cupboard;
+import smartcupboard.github.com.demo.itemhistory.ItemHistory;
 import smartcupboard.github.com.demo.role.Role;
 
 import javax.persistence.*;
@@ -29,4 +30,7 @@ public class User {
 
     @ManyToMany(mappedBy = "users")
     private List<Cupboard> cupboards = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<ItemHistory> itemHistoryList = new ArrayList<>();
 }
