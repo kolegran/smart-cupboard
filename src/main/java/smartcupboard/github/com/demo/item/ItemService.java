@@ -10,11 +10,11 @@ import java.util.List;
 public class ItemService {
     private final ItemRepository itemRepository;
 
-    public List<ItemDto> getAll() {
+    public List<ItemSimpleDto> getAll() {
         return null;
     }
 
-    public ItemDto getById(Long itemId) {
+    public ItemSimpleDto getById(Long itemId) {
         return null;
     }
 
@@ -22,7 +22,7 @@ public class ItemService {
         return null;
     }
 
-    public ItemDto create(CreateItemCommand command) {
+    public ItemSimpleDto create(CreateItemCommand command) {
         return null;
     }
 

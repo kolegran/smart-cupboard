@@ -1,18 +1,21 @@
 package smartcupboard.github.com.demo.item;
 
 import lombok.Getter;
+import smartcupboard.github.com.demo.itemhistory.ItemHistoryDto;
 
-import java.sql.Timestamp;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
-public class ItemDto {
-    private final Long id;
-    private final String title;
-    private final Timestamp createdAt;
+public class ItemDto extends ItemSimpleDto {
+    List<ItemHistoryDto> history;
 
     public ItemDto(Item item) {
-        this.id = item.getId();
-        this.title = item.getTitle();
-        this.createdAt = item.getCreatedAt();
+        super(item);
+
+        this.history = item.getItemHistoryList()
+                .stream()
+                .map(ItemHistoryDto::new)
+                .collect(Collectors.toList());
     }
 }

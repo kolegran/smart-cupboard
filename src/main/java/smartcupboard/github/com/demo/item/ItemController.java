@@ -13,12 +13,12 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping("/items")
-    public ResponseEntity<List<ItemDto>> getAllItems() {
+    public ResponseEntity<List<ItemSimpleDto>> getAllItems() {
         return ResponseEntity.ok(itemService.getAll());
     }
 
     @GetMapping("/items/{itemId}")
-    public ResponseEntity<ItemDto> getItemById(@PathVariable Long itemId) {
+    public ResponseEntity<ItemSimpleDto> getItemById(@PathVariable Long itemId) {
         return ResponseEntity.ok(itemService.getById(itemId));
     }
 
@@ -28,7 +28,7 @@ public class ItemController {
     }
 
     @PostMapping("/items")
-    public ResponseEntity<ItemDto> createItem(@RequestBody @Valid CreateItemCommand command) {
+    public ResponseEntity<ItemSimpleDto> createItem(@RequestBody @Valid CreateItemCommand command) {
         return ResponseEntity.ok(itemService.create(command));
     }
 
