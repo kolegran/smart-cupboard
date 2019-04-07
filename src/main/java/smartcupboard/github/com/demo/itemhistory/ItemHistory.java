@@ -24,6 +24,6 @@ public class ItemHistory {
     @ManyToOne(optional = false)
     private Item item;
 
-    @ManyToOne(optional = false)
-    private User user;
+    //@ManyToOne
+    //private User user;
 }

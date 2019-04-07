@@ -11,4 +11,6 @@ public class RegistrationDeviceCommand {
 
     @NotNull
     private String title;
+
+    private Long shelfId;
 }

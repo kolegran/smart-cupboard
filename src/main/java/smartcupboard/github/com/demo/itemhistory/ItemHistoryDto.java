@@ -12,7 +12,7 @@ public class ItemHistoryDto {
     private Long id;
     private Timestamp createdAt;
     private ItemSimpleDto item;
-    private UserSimpleDto user;
+    //private UserSimpleDto user;
     private ShelfSimpleDto shelf;
 
     public ItemHistoryDto(ItemHistory itemHistory) {
@@ -20,6 +20,6 @@ public class ItemHistoryDto {
         this.createdAt = itemHistory.getCreatedAt();
         this.shelf = new ShelfSimpleDto(itemHistory.getShelf());
         this.item = new ItemSimpleDto(itemHistory.getItem());
-        this.user = new UserSimpleDto(itemHistory.getUser());
+        //this.user = new UserSimpleDto(itemHistory.getUser());
     }
 }

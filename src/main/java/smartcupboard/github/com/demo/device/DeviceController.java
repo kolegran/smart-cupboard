@@ -3,6 +3,7 @@ package smartcupboard.github.com.demo.device;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import smartcupboard.github.com.demo.itemhistory.ItemHistoryDto;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,9 +18,9 @@ public class DeviceController {
         return ResponseEntity.ok(deviceService.registration(command));
     }
 
-    @PostMapping("/devices/{deviceId}/events")
-    public ResponseEntity<DeviceSimpleDto> deviceEvent(@PathVariable String deviceId, @RequestBody @Valid List<EventDeviceCommand> command) {
-        return ResponseEntity.ok(deviceService.addEvents(deviceId, command));
+    @PostMapping("/devices/events")
+    public ResponseEntity<List<ItemHistoryDto>> deviceEvent(@RequestBody @Valid EventDeviceCommand command) {
+        return ResponseEntity.ok(deviceService.addEvents(command));
     }
 
     @GetMapping("/devices")

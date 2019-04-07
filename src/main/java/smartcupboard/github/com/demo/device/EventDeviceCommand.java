@@ -2,16 +2,11 @@ package smartcupboard.github.com.demo.device;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class EventDeviceCommand {
-    @NotNull
-    private String itemId;
-
-    @NotNull
-    private long createdAt;
-
-    @NotNull
-    private Double weight;
+    private String deviceId;
+    private List<ItemData> items = new ArrayList<>();
 }

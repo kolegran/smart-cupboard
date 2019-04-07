@@ -1,10 +1,9 @@
 package smartcupboard.github.com.demo.device;
 
 import lombok.Data;
+import smartcupboard.github.com.demo.cupboard.shelf.Shelf;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -18,4 +17,7 @@ public class Device {
 
     @Column(nullable = false)
     private String title;
+
+    @ManyToOne
+    private Shelf shelf;
 }

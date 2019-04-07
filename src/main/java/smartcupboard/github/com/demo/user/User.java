@@ -31,6 +31,6 @@ public class User {
     @ManyToMany(mappedBy = "users")
     private List<Cupboard> cupboards = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    private List<ItemHistory> itemHistoryList = new ArrayList<>();
+    //@OneToMany(mappedBy = "user")
+    //private List<ItemHistory> itemHistoryList = new ArrayList<>();
 }
