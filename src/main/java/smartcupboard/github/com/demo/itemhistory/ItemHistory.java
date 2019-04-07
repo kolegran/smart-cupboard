@@ -18,8 +18,6 @@ public class ItemHistory {
     @Column(nullable = false)
     private Timestamp createdAt;
 
-    private Double weight;
-
     @ManyToOne(optional = false)
     private Shelf shelf;
 
