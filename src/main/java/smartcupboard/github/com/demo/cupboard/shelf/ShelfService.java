@@ -10,7 +10,7 @@ import java.util.List;
 public class ShelfService {
     private final ShelfRepository shelfRepository;
 
-    public List<ShelfDto> getAll() {
+    public List<ShelfSimpleDto> getAll() {
         return null;
     }
 

@@ -13,7 +13,7 @@ public class ShelfController {
     private final ShelfService shelfService;
 
     @GetMapping("/cupboards/{cupboardId}/shelfs")
-    public ResponseEntity<List<ShelfDto>> getAllShelfs() {
+    public ResponseEntity<List<ShelfSimpleDto>> getAllShelfs() {
         return ResponseEntity.ok(shelfService.getAll());
     }
 
