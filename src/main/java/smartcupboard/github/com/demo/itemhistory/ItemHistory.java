@@ -1,8 +1,7 @@
 package smartcupboard.github.com.demo.itemhistory;
 
 import lombok.Data;
-import smartcupboard.github.com.demo.cupboard.shelf.sector.Sector;
-import smartcupboard.github.com.demo.device.Device;
+import smartcupboard.github.com.demo.cupboard.shelf.Shelf;
 import smartcupboard.github.com.demo.item.Item;
 import smartcupboard.github.com.demo.user.User;
 
@@ -22,10 +21,7 @@ public class ItemHistory {
     private Double weight;
 
     @ManyToOne(optional = false)
-    private Device device;
-
-    @ManyToOne
-    private Sector sector;
+    private Shelf shelf;
 
     @ManyToOne(optional = false)
     private Item item;

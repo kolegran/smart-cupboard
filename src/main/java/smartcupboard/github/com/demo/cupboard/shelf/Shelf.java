@@ -2,11 +2,8 @@ package smartcupboard.github.com.demo.cupboard.shelf;
 
 import lombok.Data;
 import smartcupboard.github.com.demo.cupboard.Cupboard;
-import smartcupboard.github.com.demo.cupboard.shelf.sector.Sector;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
@@ -19,7 +16,4 @@ public class Shelf {
 
     @ManyToOne(optional = false)
     private Cupboard cupboard;
-
-    @OneToMany(mappedBy = "shelf")
-    private List<Sector> sectors = new ArrayList<>();
 }
