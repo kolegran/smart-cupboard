@@ -4,6 +4,7 @@ import lombok.*;
 import smartcupboard.github.com.demo.cupboard.Cupboard;
 import smartcupboard.github.com.demo.itemhistory.ItemHistory;
 import smartcupboard.github.com.demo.role.Role;
+import smartcupboard.github.com.demo.user.log.UserLog;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -33,4 +34,7 @@ public class User {
 
     //@OneToMany(mappedBy = "user")
     //private List<ItemHistory> itemHistoryList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<UserLog> userLogs = new ArrayList<>();
 }

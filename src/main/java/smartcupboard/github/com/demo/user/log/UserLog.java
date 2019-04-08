@@ -1,11 +1,9 @@
 package smartcupboard.github.com.demo.user.log;
 
 import lombok.Data;
+import smartcupboard.github.com.demo.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -16,4 +14,7 @@ public class UserLog {
     private Long id;
 
     private Timestamp createdAt;
+
+    @ManyToOne(optional = false)
+    private User user;
 }
