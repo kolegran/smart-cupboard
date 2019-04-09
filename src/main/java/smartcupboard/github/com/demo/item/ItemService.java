@@ -1,8 +1,8 @@
 package smartcupboard.github.com.demo.item;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class ItemService {
     private final ItemRepository itemRepository;
 
+    @Transactional(readOnly = true)
     public List<ItemSimpleDto> getAll() {
         return itemRepository.findAll()
                 .stream()
@@ -21,14 +22,17 @@ public class ItemService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public ItemSimpleDto getById(Long itemId) {
         return new ItemSimpleDto(itemRepository.getOne(itemId));
     }
 
+    @Transactional(readOnly = true)
     public List<ItemEventDto> getHistory(Long itemId) {
         return null;
     }
 
+    @Transactional
     public ItemSimpleDto create(CreateItemCommand command) {
         Item item = new Item();
 
@@ -37,6 +41,7 @@ public class ItemService {
         return new ItemSimpleDto(itemRepository.save(item));
     }
 
+    @Transactional
     public void deleteById(Long itemId) {
         itemRepository.deleteById(itemId);
     }
