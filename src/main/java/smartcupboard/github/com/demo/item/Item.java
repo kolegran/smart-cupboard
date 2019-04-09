@@ -25,4 +25,7 @@ public class Item {
 
     @OneToMany(mappedBy = "item")
     private List<ItemHistory> itemHistoryList = new ArrayList<>();
+
+    @Enumerated(EnumType.STRING)
+    private ItemStatus status;
 }
