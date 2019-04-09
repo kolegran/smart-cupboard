@@ -1,7 +1,7 @@
 package smartcupboard.github.com.demo.itemhistory;
 
 import lombok.Data;
-import smartcupboard.github.com.demo.cupboard.shelf.Shelf;
+import smartcupboard.github.com.demo.cupboard.shelf.sector.Sector;
 import smartcupboard.github.com.demo.item.Item;
 import smartcupboard.github.com.demo.user.User;
 
@@ -19,11 +19,11 @@ public class ItemHistory {
     private Timestamp createdAt;
 
     @ManyToOne(optional = false)
-    private Shelf shelf;
+    private Sector sector;
 
     @ManyToOne(optional = false)
     private Item item;
 
-    //@ManyToOne
-    //private User user;
+    @ManyToOne
+    private User user;
 }
