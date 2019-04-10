@@ -28,6 +28,7 @@ dependencies {
     
     compile('io.springfox:springfox-swagger2:2.9.2')
     compile('io.springfox:springfox-swagger-ui:2.9.2')
+    compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.1'
     
     runtimeOnly 'org.postgresql:postgresql'
     
