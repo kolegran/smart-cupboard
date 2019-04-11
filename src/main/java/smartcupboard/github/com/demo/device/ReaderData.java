@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class EventDeviceCommand {
-    private String deviceId;
-    private List<ReaderData> readers = new ArrayList<>();
+public class ReaderData {
+    private String readerId;
+    private List<ItemData> items = new ArrayList<>();
 }
