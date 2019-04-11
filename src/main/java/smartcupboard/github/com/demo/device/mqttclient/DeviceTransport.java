@@ -5,6 +5,7 @@ import org.eclipse.paho.client.mqttv3.IMqttClient;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -12,16 +13,18 @@ import java.util.UUID;
 @Component
 @Getter
 public class DeviceTransport {
-    private String publisherId = UUID.randomUUID().toString();
-    private IMqttClient publisher;
+    private String clientId = UUID.randomUUID().toString();
+    private IMqttClient client;
 
     public void setConnection() throws MqttException {
-            publisher = new MqttClient("tcp://stag.track-debts.com:1883", publisherId);
+        MqttDefaultFilePersistence dataStore = new MqttDefaultFilePersistence("dev/pahodata" + "/" + clientId);
 
-            MqttConnectOptions options = new MqttConnectOptions();
-            options.setAutomaticReconnect(true);
-            options.setCleanSession(true);
-            options.setConnectionTimeout(10);
-            publisher.connect(options);
+        client = new MqttClient("tcp://stag.track-debts.com:1883", clientId, dataStore);
+
+        MqttConnectOptions options = new MqttConnectOptions();
+        options.setAutomaticReconnect(true);
+        options.setCleanSession(true);
+        options.setConnectionTimeout(10);
+        client.connect(options);
     }
 }
