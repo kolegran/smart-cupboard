@@ -1,0 +1,102 @@
+INSERT INTO cupboard (id, title) VALUES (1, 'chemistry');
+INSERT INTO cupboard (id, title) VALUES (2, 'medicine');
+INSERT INTO cupboard (id, title) VALUES (3, 'weapon');
+
+INSERT INTO shelf (id, title, cupboard_id) VALUES (1, 'acid', 1);
+INSERT INTO shelf (id, title, cupboard_id) VALUES (2, 'metals', 1);
+INSERT INTO shelf (id, title, cupboard_id) VALUES (3, 'alkali', 1);
+INSERT INTO shelf (id, title, cupboard_id) VALUES (4, 'painkillers', 2);
+INSERT INTO shelf (id, title, cupboard_id) VALUES (5, 'vitamins', 2);
+INSERT INTO shelf (id, title, cupboard_id) VALUES (6, 'antibiotics', 2);
+INSERT INTO shelf (id, title, cupboard_id) VALUES (7, 'pistols', 3);
+INSERT INTO shelf (id, title, cupboard_id) VALUES (8, 'ammunition', 3);
+INSERT INTO shelf (id, title, cupboard_id) VALUES (9, 'gunpowder', 3);
+
+INSERT INTO device (id, created_at, title, shelf_id) VALUES (1, '2019-03-01 00:01:12', 'ESP_1', 1);
+INSERT INTO device (id, created_at, title, shelf_id) VALUES (2, '2019-03-01 10:03:43', 'ESP_2', 2);
+INSERT INTO device (id, created_at, title, shelf_id) VALUES (3, '2019-03-03 06:21:12', 'ESP_3', 3);
+INSERT INTO device (id, created_at, title, shelf_id) VALUES (4, '2019-03-04 00:10:05', 'ESP_4', 4);
+INSERT INTO device (id, created_at, title, shelf_id) VALUES (5, '2019-03-05 15:42:24', 'ESP_5', 5);
+INSERT INTO device (id, created_at, title, shelf_id) VALUES (6, '2019-03-06 11:01:18', 'ESP_6', 6);
+INSERT INTO device (id, created_at, title, shelf_id) VALUES (7, '2019-03-07 21:52:17', 'ESP_7', 7);
+INSERT INTO device (id, created_at, title, shelf_id) VALUES (8, '2019-03-07 22:01:10', 'ESP_8', 8);
+INSERT INTO device (id, created_at, title, shelf_id) VALUES (9, '2019-03-09 01:04:21', 'ESP_9', 9);
+
+INSERT INTO sector (id, title, shelf_id) VALUES (1, 'sector_1_1', 1);
+INSERT INTO sector (id, title, shelf_id) VALUES (2, 'sector_1_2', 1);
+INSERT INTO sector (id, title, shelf_id) VALUES (3, 'sector_2_1', 2);
+INSERT INTO sector (id, title, shelf_id) VALUES (4, 'sector_2_2', 2);
+INSERT INTO sector (id, title, shelf_id) VALUES (5, 'sector_3_1', 3);
+INSERT INTO sector (id, title, shelf_id) VALUES (6, 'sector_3_2', 3);
+INSERT INTO sector (id, title, shelf_id) VALUES (7, 'sector_4_1', 4);
+INSERT INTO sector (id, title, shelf_id) VALUES (8, 'sector_4_2', 4);
+INSERT INTO sector (id, title, shelf_id) VALUES (9, 'sector_5_1', 5);
+INSERT INTO sector (id, title, shelf_id) VALUES (10, 'sector_5_2', 5);
+INSERT INTO sector (id, title, shelf_id) VALUES (11, 'sector_6_1', 6);
+INSERT INTO sector (id, title, shelf_id) VALUES (12, 'sector_6_2', 6);
+INSERT INTO sector (id, title, shelf_id) VALUES (13, 'sector_7_1', 7);
+INSERT INTO sector (id, title, shelf_id) VALUES (14, 'sector_7_2', 7);
+INSERT INTO sector (id, title, shelf_id) VALUES (15, 'sector_8_1', 8);
+INSERT INTO sector (id, title, shelf_id) VALUES (16, 'sector_8_2', 8);
+INSERT INTO sector (id, title, shelf_id) VALUES (17, 'sector_9_1', 9);
+INSERT INTO sector (id, title, shelf_id) VALUES (18, 'sector_9_2', 9);
+
+INSERT INTO reader (id, title, sector_id) VALUES (1, 'reader_1', 1);
+INSERT INTO reader (id, title, sector_id) VALUES (2, 'reader_2', 2);
+INSERT INTO reader (id, title, sector_id) VALUES (3, 'reader_3', 3);
+INSERT INTO reader (id, title, sector_id) VALUES (4, 'reader_4', 4);
+INSERT INTO reader (id, title, sector_id) VALUES (5, 'reader_5', 5);
+INSERT INTO reader (id, title, sector_id) VALUES (6, 'reader_6', 6);
+INSERT INTO reader (id, title, sector_id) VALUES (7, 'reader_7', 7);
+INSERT INTO reader (id, title, sector_id) VALUES (8, 'reader_8', 8);
+INSERT INTO reader (id, title, sector_id) VALUES (9, 'reader_9', 9);
+INSERT INTO reader (id, title, sector_id) VALUES (10, 'reader_10', 10);
+INSERT INTO reader (id, title, sector_id) VALUES (11, 'reader_11', 11);
+INSERT INTO reader (id, title, sector_id) VALUES (12, 'reader_12', 12);
+INSERT INTO reader (id, title, sector_id) VALUES (13, 'reader_13', 13);
+INSERT INTO reader (id, title, sector_id) VALUES (14, 'reader_14', 14);
+INSERT INTO reader (id, title, sector_id) VALUES (15, 'reader_15', 15);
+INSERT INTO reader (id, title, sector_id) VALUES (16, 'reader_16', 16);
+INSERT INTO reader (id, title, sector_id) VALUES (17, 'reader_17', 17);
+INSERT INTO reader (id, title, sector_id) VALUES (18, 'reader_18', 18);
+
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (1, '2019-03-08 08:01:13', 'B12c32a', 'PUT', 'HCl');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (2, '2019-03-09 08:02:12', 'C32d17g', 'PUT', 'H2S');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (3, '2019-03-10 08:03:17', 'B34k43a', 'TAKEN', 'Au');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (4, '2019-03-11 08:04:13', 'k34d78a', 'PUT', 'Ag');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (5, '2019-03-12 08:05:18', 'l56c33q', 'TAKEN', 'NaOH');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (6, '2019-03-13 08:06:14', 'h22v30a', 'TAKEN', 'Cu(OH)2');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (7, '2019-03-14 08:07:36', 'W22h56t', 'PUT', 'Panadol');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (8, '2019-03-15 08:08:34', 'G27d30a', 'PUT', 'Voltarol');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (9, '2019-03-16 08:09:33', 'G34j32h', 'PUT', 'Centrum');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (10, '2019-03-17 08:10:23', 'H67d32n', 'PUT', 'Mulvit');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (11, '2019-03-18 08:11:17', 'E23i32d', 'TAKEN', 'Azithromycin');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (12, '2019-03-19 08:12:13', 'K97q32g', 'TAKEN', 'Ciprofloxacin');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (13, '2019-03-20 08:13:17', 'Q34f32d', 'TAKEN', 'GLOCK 19');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (14, '2019-03-21 08:14:11', 'D34h32t', 'PUT', 'RUGER SR9');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (15, '2019-03-22 08:15:18', 'V88h32f', 'PUT', '.416 TYR');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (16, '2019-03-23 08:16:18', 'H97e32d', 'TAKEN', '.460 Steyr');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (17, '2019-03-24 08:17:13', 'F34w32s', 'TAKEN', 'Vintavuori');
+INSERT INTO item (id, created_at, rfid, status, title) VALUES (18, '2019-03-25 08:18:12', 'E76o32j', 'PUT', 'Gun Powder G-7');
+
+INSERT INTO role (id, title) VALUES (1, 'admin');
+INSERT INTO role (id, title) VALUES (2, 'user');
+
+INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (1, 'email_1', 'f_name_1', 'l_name_1', 'pass_1', 2);
+INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (2, 'email_2', 'f_name_2', 'l_name_2', 'pass_2', 2);
+INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (3, 'email_3', 'f_name_3', 'l_name_3', 'pass_3', 2);
+INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (4, 'email_4', 'f_name_4', 'l_name_4', 'pass_4', 2);
+
+INSERT INTO item_history (id, created_at, item_id, sector_id, user_id) VALUES (1, '2013-02-08 00:01:12', 3, 3, 1);
+INSERT INTO item_history (id, created_at, item_id, sector_id, user_id) VALUES (2, '2013-02-08 00:01:12', 5, 5, 1);
+INSERT INTO item_history (id, created_at, item_id, sector_id, user_id) VALUES (3, '2013-02-08 00:01:12', 6, 6, 1);
+INSERT INTO item_history (id, created_at, item_id, sector_id, user_id) VALUES (4, '2013-02-08 00:01:12', 11, 11, 2);
+INSERT INTO item_history (id, created_at, item_id, sector_id, user_id) VALUES (5, '2013-02-08 00:01:12', 12, 12, 2);
+INSERT INTO item_history (id, created_at, item_id, sector_id, user_id) VALUES (6, '2013-02-08 00:01:12', 13, 13, 3);
+INSERT INTO item_history (id, created_at, item_id, sector_id, user_id) VALUES (7, '2013-02-08 00:01:12', 16, 16, 4);
+INSERT INTO item_history (id, created_at, item_id, sector_id, user_id) VALUES (8, '2013-02-08 00:01:12', 17, 17, 3);
+
+INSERT INTO cupboard_users (cupboards_id, users_id) VALUES (1, 1);
+INSERT INTO cupboard_users (cupboards_id, users_id) VALUES (2, 2);
+INSERT INTO cupboard_users (cupboards_id, users_id) VALUES (3, 3);
+INSERT INTO cupboard_users (cupboards_id, users_id) VALUES (3, 4);
