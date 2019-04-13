@@ -82,10 +82,10 @@ INSERT INTO item (id, created_at, rfid, status, title) VALUES (18, '2019-03-25 0
 INSERT INTO role (id, title) VALUES (1, 'admin');
 INSERT INTO role (id, title) VALUES (2, 'user');
 
-INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (1, 'email_1', 'f_name_1', 'l_name_1', 'pass_1', 2);
-INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (2, 'email_2', 'f_name_2', 'l_name_2', 'pass_2', 2);
-INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (3, 'email_3', 'f_name_3', 'l_name_3', 'pass_3', 2);
-INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (4, 'email_4', 'f_name_4', 'l_name_4', 'pass_4', 2);
+INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (1, 'cat-smith@gmail.com', 'Catherine', 'Smith', 'pass_1', 2);
+INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (2, 'daniel24@gmail.com', 'Daniel', 'Martin', 'pass_2', 2);
+INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (3, 'derek-wood1987@gmail.com', 'Derek', 'Wood', 'pass_3', 2);
+INSERT INTO users (id, email, first_name, last_name, password, role_id) VALUES (4, 'ella-price2204@gmail.com', 'Ella', 'Price', 'pass_4', 2);
 
 INSERT INTO item_history (id, created_at, item_id, sector_id, user_id) VALUES (1, '2013-02-08 00:01:12', 3, 3, 1);
 INSERT INTO item_history (id, created_at, item_id, sector_id, user_id) VALUES (2, '2013-02-08 00:01:12', 5, 5, 1);
