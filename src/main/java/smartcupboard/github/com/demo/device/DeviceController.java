@@ -13,16 +13,6 @@ import java.util.List;
 public class DeviceController {
     private final DeviceService deviceService;
 
-    @PostMapping("/devices")
-    public ResponseEntity<DeviceSimpleDto> registrationDevice(@RequestBody @Valid RegistrationDeviceCommand command) {
-        return ResponseEntity.ok(deviceService.registration(command));
-    }
-
-    @PostMapping("/devices/events")
-    public ResponseEntity<List<ItemHistoryDto>> deviceEvent(@RequestBody @Valid EventDeviceCommand command) {
-        return ResponseEntity.ok(deviceService.addEvents(command));
-    }
-
     @GetMapping("/devices")
     public ResponseEntity<List<DeviceSimpleDto>> getAllDevices() {
         return ResponseEntity.ok(deviceService.getAll());

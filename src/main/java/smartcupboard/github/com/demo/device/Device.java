@@ -5,17 +5,20 @@ import smartcupboard.github.com.demo.cupboard.shelf.Shelf;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Entity
 @Data
 public class Device {
     @Id
-    private String id;
+    private String macAddress;
+
+    @Column(nullable = false)
+    private UUID uuid;
 
     @Column(nullable = false)
     private Timestamp createdAt;
 
-    @Column(nullable = false)
     private String title;
 
     @ManyToOne
