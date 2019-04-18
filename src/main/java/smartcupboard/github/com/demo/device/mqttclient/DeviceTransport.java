@@ -24,7 +24,7 @@ public class DeviceTransport {
         MqttConnectOptions options = new MqttConnectOptions();
         options.setAutomaticReconnect(true);
         options.setCleanSession(false);
-        options.setKeepAliveInterval(300);
+        options.setKeepAliveInterval(5);
         options.setConnectionTimeout(10);
         client.connect(options);
     }

@@ -10,14 +10,9 @@ import smartcupboard.github.com.demo.device.DeviceSimpleDto;
 import smartcupboard.github.com.demo.device.EventDeviceCommand;
 import smartcupboard.github.com.demo.device.RegistrationDeviceCommand;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 @Component
 @RequiredArgsConstructor
 public class MqttController {
-    private CountDownLatch receivedSignal = new CountDownLatch(10);
-
     private final DeviceTransport deviceTransport = new DeviceTransport();
 
     private final DeviceService deviceService;
@@ -38,9 +33,7 @@ public class MqttController {
                     DeviceSimpleDto deviceSimpleDto = deviceService.registration(new ObjectMapper().readValue(message.toString(), RegistrationDeviceCommand.class));
                     this.deviceTransport.getClient().publish("esp/token", deviceService.createMessage(deviceSimpleDto));
                 }
-                this.receivedSignal.countDown();
             });
-            this.receivedSignal.await(1, TimeUnit.MINUTES);
         } catch (Exception e) {
             e.printStackTrace();
         }
