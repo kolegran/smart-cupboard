@@ -18,12 +18,11 @@ public class DeviceTransport {
 
     public void setConnection() throws MqttException {
         MqttDefaultFilePersistence dataStore = new MqttDefaultFilePersistence("dev/pahodata" + "/" + clientId);
-
-        client = new MqttClient("tcp://stag.track-debts.com:1883", clientId, dataStore);
+        String mqttHost = System.getenv().getOrDefault("MQTT_HOST", "mosquitto-broker");
+        client = new MqttClient("tcp://" + mqttHost+ ":1883", clientId, dataStore);
 
         MqttConnectOptions options = new MqttConnectOptions();
         options.setAutomaticReconnect(true);
-        options.setCleanSession(false);
         options.setKeepAliveInterval(5);
         options.setConnectionTimeout(10);
         client.connect(options);
