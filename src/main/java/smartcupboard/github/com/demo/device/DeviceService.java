@@ -5,6 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import smartcupboard.github.com.demo.cupboard.shelf.sector.Sector;
+import smartcupboard.github.com.demo.cupboard.shelf.sector.SectorRepository;
+import smartcupboard.github.com.demo.item.Item;
+import smartcupboard.github.com.demo.item.ItemRepository;
 import smartcupboard.github.com.demo.itemhistory.ItemHistoryDto;
 
 import java.sql.Timestamp;
@@ -17,6 +21,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DeviceService {
     private final DeviceRepository deviceRepository;
+    private final SectorRepository sectorRepository;
+    private final ItemRepository itemRepository;
 
     @Transactional
     public DeviceSimpleDto registration(RegistrationDeviceCommand command) {
@@ -35,6 +41,16 @@ public class DeviceService {
 
     @Transactional
     public List<ItemHistoryDto> addEvents(EventDeviceCommand command) {
+        Long shelfId = deviceRepository.getOne(command.getDeviceId()).getShelf().getId();
+
+        List<Sector> sectors = sectorRepository.findByShelfId(shelfId);
+
+        List<Item> items = itemRepository.findAllItems(sectors);
+
+        for (Item i : items) {
+            System.out.println(i.getRfid());
+        }
+        
         return null;
     }
 
