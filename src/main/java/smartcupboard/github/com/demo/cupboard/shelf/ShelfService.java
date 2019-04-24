@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import smartcupboard.github.com.demo.cupboard.CupboardRepository;
+import smartcupboard.github.com.demo.device.DeviceRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 public class ShelfService {
     private final ShelfRepository shelfRepository;
     private final CupboardRepository cupboardRepository;
+    private final DeviceRepository deviceRepository;
 
     @Transactional(readOnly = true)
     public List<ShelfSimpleDto> getAll() {
@@ -33,6 +35,8 @@ public class ShelfService {
 
         shelf.setTitle(command.getTitle());
         shelf.setCupboard(cupboardRepository.getOne(command.getCupboardId()));
+        shelf.setDevice(deviceRepository.getOne(command.getDeviceId()));
+
         return new ShelfDto(shelfRepository.save(shelf));
     }
 
@@ -42,6 +46,8 @@ public class ShelfService {
 
         shelf.setTitle(command.getTitle());
         shelf.setCupboard(cupboardRepository.getOne(command.getCupboardId()));
+        shelf.setDevice(deviceRepository.getOne(command.getDeviceId()));
+
         return new ShelfDto(shelfRepository.save(shelf));
     }
 

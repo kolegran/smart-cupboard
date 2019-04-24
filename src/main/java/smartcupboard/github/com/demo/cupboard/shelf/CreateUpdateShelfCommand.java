@@ -12,4 +12,6 @@ public class CreateUpdateShelfCommand {
 
     @NotNull
     private Long cupboardId;
+
+    private String deviceId;
 }

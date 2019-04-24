@@ -12,4 +12,6 @@ public class CreateUpdateSectorCommand {
 
     @NotNull
     private Long shelfId;
+
+    private Long readerId;
 }

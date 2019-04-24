@@ -2,6 +2,7 @@ package smartcupboard.github.com.demo.cupboard.shelf.sector;
 
 import lombok.Data;
 import smartcupboard.github.com.demo.cupboard.shelf.Shelf;
+import smartcupboard.github.com.demo.reader.Reader;
 
 import javax.persistence.*;
 
@@ -16,4 +17,7 @@ public class Sector {
 
     @ManyToOne(optional = false)
     private Shelf shelf;
+
+    @OneToOne(mappedBy = "sector")
+    private Reader reader;
 }

@@ -21,6 +21,6 @@ public class Device {
 
     private String title;
 
-    @ManyToOne
+    @OneToOne
     private Shelf shelf;
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import smartcupboard.github.com.demo.cupboard.shelf.ShelfRepository;
+import smartcupboard.github.com.demo.reader.ReaderRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 public class SectorService {
     private final SectorRepository sectorRepository;
     private final ShelfRepository shelfRepository;
+    private final ReaderRepository readerRepository;
 
     @Transactional(readOnly = true)
     public List<SectorDto> getAll() {
@@ -32,6 +34,7 @@ public class SectorService {
         Sector sector = new Sector();
         sector.setTitle(command.getTitle());
         sector.setShelf(shelfRepository.getOne(command.getShelfId()));
+        sector.setReader(readerRepository.getOne(command.getReaderId()));
 
         return new SectorDto(sectorRepository.save(sector));
     }
@@ -41,6 +44,7 @@ public class SectorService {
         Sector sector = sectorRepository.getOne(sectorId);
         sector.setTitle(command.getTitle());
         sector.setShelf(shelfRepository.getOne(command.getShelfId()));
+        sector.setReader(readerRepository.getOne(command.getReaderId()));
 
         return new SectorDto(sectorRepository.save(sector));
     }
