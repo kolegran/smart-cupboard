@@ -3,7 +3,6 @@ package smartcupboard.github.com.demo.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import smartcupboard.github.com.demo.role.RoleRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +10,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    RoleRepository roleRepository;
     UserRepository userRepository;
 
     public Object obtainToken(ObtainTokenCommand command) {
@@ -38,7 +36,6 @@ public class UserService {
         user.setFirstName(command.getFirstName());
         user.setLastName(command.getLastName());
         user.setEmail(command.getEmail());
-        user.setRole(roleRepository.getOne(command.getRoleId()));
 
         return new UserDto(userRepository.save(user));
     }
@@ -63,7 +60,6 @@ public class UserService {
         user.setFirstName(command.getFirstName());
         user.setLastName(command.getLastName());
         user.setEmail(command.getEmail());
-        user.setRole(roleRepository.getOne(command.getRoleId()));
 
         return new UserDto(userRepository.save(user));
     }

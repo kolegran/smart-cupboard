@@ -15,7 +15,4 @@ public class CreateUpdateUserCommand {
 
     @Length(min = 5)
     private String email;
-
-    @NotNull
-    private Long roleId;
 }

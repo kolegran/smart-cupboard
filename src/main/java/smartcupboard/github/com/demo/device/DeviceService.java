@@ -42,15 +42,9 @@ public class DeviceService {
     @Transactional
     public List<ItemHistoryDto> addEvents(EventDeviceCommand command) {
         Long shelfId = deviceRepository.getOne(command.getDeviceId()).getShelf().getId();
-
         List<Sector> sectors = sectorRepository.findByShelfId(shelfId);
+        List<Item> lastItems = itemRepository.findAllItems(sectors);
 
-        List<Item> items = itemRepository.findAllItems(sectors);
-
-        for (Item i : items) {
-            System.out.println(i.getRfid());
-        }
-        
         return null;
     }
 
