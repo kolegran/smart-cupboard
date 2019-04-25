@@ -14,7 +14,7 @@ public interface ItemRepository extends JpaRepository<Item, Long>, JpaSpecificat
 
             "(SELECT item_history.id, MAX(created_at) as created_at " +
             "FROM item_history WHERE item_history.sector_id IN :sectors " +
-            "GROUP BY item_history.id) as last_records," +
+            "GROUP BY item_history.id) as last_records " +
 
             "WHERE item_history.item_id = item.id AND item_history.id = last_records.id AND item_history.created_at = last_records.created_at", nativeQuery = true)
     List<Item> findAllItems(@Param("sectors") List<Sector> sectors);
