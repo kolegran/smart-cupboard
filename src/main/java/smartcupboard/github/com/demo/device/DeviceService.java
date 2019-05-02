@@ -10,7 +10,9 @@ import smartcupboard.github.com.demo.cupboard.shelf.sector.SectorRepository;
 import smartcupboard.github.com.demo.item.Item;
 import smartcupboard.github.com.demo.item.ItemRepository;
 import smartcupboard.github.com.demo.item.ItemStatus;
+import smartcupboard.github.com.demo.itemhistory.ItemHistory;
 import smartcupboard.github.com.demo.itemhistory.ItemHistoryRepository;
+import smartcupboard.github.com.demo.reader.ReaderRepository;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -24,6 +26,8 @@ public class DeviceService {
     private final DeviceRepository deviceRepository;
     private final SectorRepository sectorRepository;
     private final ItemRepository itemRepository;
+    private final ReaderRepository readerRepository;
+    private final ItemHistoryRepository itemHistoryRepository;
 
     @Transactional
     public DeviceSimpleDto registration(RegistrationDeviceCommand command) {
@@ -61,7 +65,17 @@ public class DeviceService {
 
             itemRepository.saveAll(items);
 
-            // TODO: create ItemHistory and save to database
+            Sector sector = readerRepository.getOne(reader.getReaderId()).getSector();
+            List<ItemHistory> itemHistoryList = items
+                    .stream()
+                    .map(obj -> ItemHistory.builder()
+                            .createdAt(new Timestamp(new Date().getTime()))
+                            .sector(sector)
+                            .item(obj)
+                            .build())
+                    .collect(Collectors.toList());
+
+            itemHistoryRepository.saveAll(itemHistoryList);
         }
 
         lastItems = lastItems
