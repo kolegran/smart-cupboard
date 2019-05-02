@@ -18,4 +18,6 @@ public interface ItemRepository extends JpaRepository<Item, Long>, JpaSpecificat
 
             "WHERE item_history.item_id = item.id AND item_history.id = last_records.id AND item_history.created_at = last_records.created_at", nativeQuery = true)
     List<Item> findAllItems(@Param("sectors") List<Sector> sectors);
+
+    List<Item> findByRfidIn(List<String> rfids);
 }

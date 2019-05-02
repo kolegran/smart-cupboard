@@ -9,7 +9,8 @@ import smartcupboard.github.com.demo.cupboard.shelf.sector.Sector;
 import smartcupboard.github.com.demo.cupboard.shelf.sector.SectorRepository;
 import smartcupboard.github.com.demo.item.Item;
 import smartcupboard.github.com.demo.item.ItemRepository;
-import smartcupboard.github.com.demo.itemhistory.ItemHistoryDto;
+import smartcupboard.github.com.demo.item.ItemStatus;
+import smartcupboard.github.com.demo.itemhistory.ItemHistoryRepository;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -40,12 +41,35 @@ public class DeviceService {
     }
 
     @Transactional
-    public List<ItemHistoryDto> addEvents(EventDeviceCommand command) {
+    public void addEvents(EventDeviceCommand command) {
         Long shelfId = deviceRepository.getOne(command.getDeviceId()).getShelf().getId();
         List<Sector> sectors = sectorRepository.findByShelfId(shelfId);
         List<Item> lastItems = itemRepository.findAllItems(sectors);
 
-        return null;
+        for (ReaderData reader : command.getReaders()) {
+            List<Item> items = itemRepository.findByRfidIn(reader.getItems()
+                    .stream()
+                    .map(ItemData::getRfid)
+                    .collect(Collectors.toList()));
+
+            lastItems.removeAll(items);
+
+            items = items
+                    .stream()
+                    .peek(object -> object.setStatus(ItemStatus.PUT))
+                    .collect(Collectors.toList());
+
+            itemRepository.saveAll(items);
+
+            // TODO: create ItemHistory and save to database
+        }
+
+        lastItems = lastItems
+                .stream()
+                .peek(obj -> obj.setStatus(ItemStatus.TAKEN))
+                .collect(Collectors.toList());
+
+        itemRepository.saveAll(lastItems);
     }
 
     @Transactional(readOnly = true)
