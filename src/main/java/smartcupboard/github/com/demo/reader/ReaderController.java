@@ -18,7 +18,7 @@ public class ReaderController {
     }
 
     @GetMapping("/readers/{readerId}")
-    public ResponseEntity<ReaderDto> getReaderById(@PathVariable Long readerId) {
+    public ResponseEntity<ReaderDto> getReaderById(@PathVariable String readerId) {
         return ResponseEntity.ok(readerService.getById(readerId));
     }
 
@@ -28,13 +28,13 @@ public class ReaderController {
     }
 
     @PutMapping("/readers/{readerId}")
-    public ResponseEntity<ReaderDto> updateReaderById(@PathVariable Long readerId,
+    public ResponseEntity<ReaderDto> updateReaderById(@PathVariable String readerId,
                                                     @RequestBody @Valid CreateUpdateReaderCommand command) {
         return ResponseEntity.ok(readerService.updateById(readerId, command));
     }
 
     @DeleteMapping("/readers/{readerId}")
-    public ResponseEntity<Void> deleteReaderById(@PathVariable Long readerId) {
+    public ResponseEntity<Void> deleteReaderById(@PathVariable String readerId) {
         readerService.deleteById(readerId);
         return ResponseEntity.ok().build();
     }

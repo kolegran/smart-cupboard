@@ -23,7 +23,7 @@ public class ReaderService {
     }
 
     @Transactional(readOnly = true)
-    public ReaderDto getById(Long readerId) {
+    public ReaderDto getById(String readerId) {
         return new ReaderDto(readerRepository.getOne(readerId));
     }
 
@@ -37,7 +37,7 @@ public class ReaderService {
     }
 
     @Transactional
-    public ReaderDto updateById(Long readerId, CreateUpdateReaderCommand command) {
+    public ReaderDto updateById(String readerId, CreateUpdateReaderCommand command) {
         Reader reader = readerRepository.getOne(readerId);
 
         reader.setTitle(command.getTitle());
@@ -46,7 +46,7 @@ public class ReaderService {
     }
 
     @Transactional
-    public void deleteById(Long readerId) {
+    public void deleteById(String readerId) {
         readerRepository.deleteById(readerId);
     }
 }
