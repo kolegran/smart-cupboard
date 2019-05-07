@@ -13,7 +13,7 @@ public class SectorController {
     private final SectorService sectorService;
 
     @GetMapping("/cupboards/{cupboardId}/shelfs/{shelfId}/sectors")
-    public ResponseEntity<List<SectorDto>> getAllSectors() {
+    public ResponseEntity<List<SectorSimpleDto>> getAllSectors() {
         return ResponseEntity.ok(sectorService.getAll());
     }
 

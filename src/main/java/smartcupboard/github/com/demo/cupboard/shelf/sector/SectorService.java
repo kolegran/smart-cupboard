@@ -17,7 +17,7 @@ public class SectorService {
     private final ReaderRepository readerRepository;
 
     @Transactional(readOnly = true)
-    public List<SectorDto> getAll() {
+    public List<SectorSimpleDto> getAll() {
         return sectorRepository.findAll()
                 .stream()
                 .map(SectorDto::new)

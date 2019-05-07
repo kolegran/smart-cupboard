@@ -8,16 +8,14 @@ import smartcupboard.github.com.demo.user.UserSimpleDto;
 import java.sql.Timestamp;
 
 @Getter
-public class ItemHistoryDto {
-    private Long id;
-    private Timestamp createdAt;
-    private ItemSimpleDto item;
-    private UserSimpleDto user;
-    private SectorDto sector;
+public class ItemHistoryDto extends ItemHistorySimpleDto {
+    private final ItemSimpleDto item;
+    private final UserSimpleDto user;
+    private final SectorDto sector;
 
     public ItemHistoryDto(ItemHistory itemHistory) {
-        this.id = itemHistory.getId();
-        this.createdAt = itemHistory.getCreatedAt();
+        super(itemHistory);
+
         this.item = new ItemSimpleDto(itemHistory.getItem());
         this.sector = new SectorDto(itemHistory.getSector());
         this.user = new UserSimpleDto(itemHistory.getUser());
