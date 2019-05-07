@@ -1,6 +1,5 @@
 package smartcupboard.github.com.demo.itemhistory;
 
-import lombok.Builder;
 import lombok.Data;
 import smartcupboard.github.com.demo.cupboard.shelf.sector.Sector;
 import smartcupboard.github.com.demo.item.Item;
@@ -11,7 +10,6 @@ import java.sql.Timestamp;
 
 @Entity
 @Data
-@Builder
 public class ItemHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

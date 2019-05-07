@@ -68,11 +68,14 @@ public class DeviceService {
             Sector sector = readerRepository.getOne(reader.getReaderId()).getSector();
             List<ItemHistory> itemHistoryList = items
                     .stream()
-                    .map(obj -> ItemHistory.builder()
-                            .createdAt(new Timestamp(new Date().getTime()))
-                            .sector(sector)
-                            .item(obj)
-                            .build())
+                    .map(obj -> {
+                        ItemHistory itemHistory = new ItemHistory();
+                        itemHistory.setCreatedAt(new Timestamp(new Date().getTime()));
+                        itemHistory.setSector(sector);
+                        itemHistory.setItem(obj);
+
+                        return itemHistory;
+                    })
                     .collect(Collectors.toList());
 
             itemHistoryRepository.saveAll(itemHistoryList);
