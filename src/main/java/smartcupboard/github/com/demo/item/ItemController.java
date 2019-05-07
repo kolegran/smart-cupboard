@@ -3,6 +3,7 @@ package smartcupboard.github.com.demo.item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import smartcupboard.github.com.demo.itemhistory.ItemHistoryDto;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ItemController {
     }
 
     @GetMapping("/items/{itemId}/history")
-    public ResponseEntity<List<ItemEventDto>> getItemHistory(@PathVariable Long itemId) {
+    public ResponseEntity<List<ItemHistoryDto>> getItemHistory(@PathVariable Long itemId) {
         return ResponseEntity.ok(itemService.getHistory(itemId));
     }
 
@@ -36,5 +37,10 @@ public class ItemController {
     public ResponseEntity<Void> deleteItemById(@PathVariable Long itemId) {
         itemService.deleteById(itemId);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/shelfs/{shelfId}/items")
+    public ResponseEntity<List<ItemExistDto>> getAllItemsByShelfId(@PathVariable Long shelfId) {
+        return ResponseEntity.ok(itemService.getAllItems(shelfId));
     }
 }
