@@ -45,8 +45,14 @@ public class DeviceService {
     }
 
     @Transactional
-    public void addEvents(EventDeviceCommand command) {
-        Long shelfId = deviceRepository.getOne(command.getDeviceId()).getShelf().getId();
+    public void addEvents(EventDeviceCommand command) throws Exception {
+        Device device = deviceRepository.getOne(command.getDeviceId());
+
+        if (!command.getUuid().equals(device.getUuid().toString())) {
+            throw new Exception("Device is unauthorized");
+        }
+
+        Long shelfId = device.getShelf().getId();
         List<Sector> sectors = sectorRepository.findByShelfId(shelfId);
         List<Item> lastItems = itemRepository.findAllItems(sectors);
 
