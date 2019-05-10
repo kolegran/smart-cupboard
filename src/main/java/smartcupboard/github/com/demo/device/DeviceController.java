@@ -3,7 +3,6 @@ package smartcupboard.github.com.demo.device;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import smartcupboard.github.com.demo.itemhistory.ItemHistoryDto;
 
 import javax.validation.Valid;
 import java.util.List;
