@@ -27,7 +27,7 @@ public class SectorController {
         return ResponseEntity.ok(sectorService.create(command));
     }
 
-    @PatchMapping("/cupboards/{cupboardId}/shelfs/{shelfId}/sectors/{sectorId}")
+    @PutMapping("/cupboards/{cupboardId}/shelfs/{shelfId}/sectors/{sectorId}")
     public ResponseEntity<SectorDto> updateSectorById(@PathVariable Long sectorId,
                                                       @RequestBody @Valid CreateUpdateSectorCommand command) {
         return ResponseEntity.ok(sectorService.updateById(sectorId, command));

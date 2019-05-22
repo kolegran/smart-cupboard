@@ -6,14 +6,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import smartcupboard.github.com.demo.cupboard.shelf.sector.Sector;
 import smartcupboard.github.com.demo.cupboard.shelf.sector.SectorRepository;
-import smartcupboard.github.com.demo.itemhistory.ItemHistory;
+import smartcupboard.github.com.demo.device.EventDeviceCommand;
+import smartcupboard.github.com.demo.device.ItemData;
+import smartcupboard.github.com.demo.device.ReaderData;
 import smartcupboard.github.com.demo.itemhistory.ItemHistoryDto;
 import smartcupboard.github.com.demo.itemhistory.ItemHistoryRepository;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,12 +44,8 @@ public class ItemService {
     }
 
     @Transactional
-    public ItemDto create(CreateItemCommand command) {
-        Item item = new Item();
-
-        item.setTitle(command.getTitle());
-        item.setCreatedAt(new Timestamp(new Date().getTime()));
-        return new ItemDto(itemRepository.save(item));
+    public ItemDto update(UpdateItemCommand command, Long itemId) {
+        return null;
     }
 
     @Transactional
@@ -66,5 +61,10 @@ public class ItemService {
         return items.stream()
                 .map(obj -> new ItemExistDto(obj, Iterables.getLast(obj.getItemHistoryList()).getSector()))
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<Item> createItems(EventDeviceCommand command) {
+        return null;
     }
 }

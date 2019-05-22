@@ -28,9 +28,9 @@ public class ItemController {
         return ResponseEntity.ok(itemService.getHistory(itemId));
     }
 
-    @PostMapping("/items")
-    public ResponseEntity<ItemSimpleDto> createItem(@RequestBody @Valid CreateItemCommand command) {
-        return ResponseEntity.ok(itemService.create(command));
+    @PutMapping("/items/{itemId}")
+    public ResponseEntity<ItemSimpleDto> updateItem(@RequestBody @Valid UpdateItemCommand command, @PathVariable Long itemId) {
+        return ResponseEntity.ok(itemService.update(command, itemId));
     }
 
     @DeleteMapping("/items/{itemId}")

@@ -15,6 +15,7 @@ import smartcupboard.github.com.demo.itemhistory.ItemHistoryRepository;
 import smartcupboard.github.com.demo.reader.ReaderRepository;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -47,21 +48,37 @@ public class DeviceService {
     @Transactional
     public void addEvents(EventDeviceCommand command) throws Exception {
         Device device = deviceRepository.getOne(command.getDeviceId());
-
+/*
         if (!command.getUuid().equals(device.getUuid().toString())) {
             throw new Exception("Device is unauthorized");
         }
-
+*/
         Long shelfId = device.getShelf().getId();
-        List<Sector> sectors = sectorRepository.findByShelfId(shelfId);
-        List<Item> lastItems = itemRepository.findAllItems(sectors);
+        List<Item> lastItems = itemRepository.findAllItems(sectorRepository.findByShelfId(shelfId));
+        List<String> allRfids = itemRepository.findAll().stream().map(Item::getRfid).collect(Collectors.toList());
 
         for (ReaderData reader : command.getReaders()) {
-            List<Item> items = itemRepository.findByRfidIn(reader.getItems()
+            List<String> rfids = reader.getItems()
                     .stream()
                     .map(ItemData::getRfid)
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toList());
 
+            List<Item> newItems = new ArrayList<>();
+            for (String rd : rfids) {
+                if (!allRfids.contains(rd)) {
+                    Item item = new Item();
+
+                    item.setRfid(rd);
+                    item.setTitle("New");
+                    item.setCreatedAt(new Timestamp(new Date().getTime()));
+                    item.setStatus(ItemStatus.PUT);
+
+                    newItems.add(item);
+                }
+            }
+            itemRepository.saveAll(newItems);
+
+            List<Item> items = itemRepository.findByRfidIn(rfids);
             lastItems.removeAll(items);
 
             items = items
@@ -72,6 +89,7 @@ public class DeviceService {
             itemRepository.saveAll(items);
 
             Sector sector = readerRepository.getOne(reader.getReaderId()).getSector();
+            items.addAll(newItems);
             List<ItemHistory> itemHistoryList = items
                     .stream()
                     .map(obj -> {
