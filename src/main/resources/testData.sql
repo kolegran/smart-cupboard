@@ -45,33 +45,33 @@ INSERT INTO sector (title, shelf_id) VALUES
 
 INSERT INTO reader (id, title, sector_id) VALUES
 ('RC-522-1', 'RC-522-1-reader', 1),
-('RC-522-2', 'RC-522-2-reader', 1),
-('RC-522-3', 'RC-522-3-reader', 1),
-('RC-522-4', 'RC-522-4-reader', 1);
+('RC-522-2', 'RC-522-2-reader', 2),
+('RC-522-3', 'RC-522-3-reader', 3),
+('RC-522-4', 'RC-522-4-reader', 4);
 
 INSERT INTO reader (id, title, sector_id) VALUES
-('RC-522-5', 'RC-522-5-reader', 2),
-('RC-522-6', 'RC-522-6-reader', 2),
-('RC-522-7', 'RC-522-7-reader', 2),
-('RC-522-8', 'RC-522-8-reader', 2);
+('RC-522-5', 'RC-522-5-reader', 5),
+('RC-522-6', 'RC-522-6-reader', 6),
+('RC-522-7', 'RC-522-7-reader', 7),
+('RC-522-8', 'RC-522-8-reader', 8);
 
 INSERT INTO reader (id, title, sector_id) VALUES
-('RC-522-9', 'RC-522-9-reader', 3),
-('RC-522-10', 'RC-522-10-reader', 3),
-('RC-522-11', 'RC-522-11-reader', 3),
-('RC-522-12', 'RC-522-12-reader', 3);
+('RC-522-9', 'RC-522-9-reader', 9),
+('RC-522-10', 'RC-522-10-reader', 10),
+('RC-522-11', 'RC-522-11-reader', 11),
+('RC-522-12', 'RC-522-12-reader', 12);
 
 INSERT INTO reader (id, title, sector_id) VALUES
-('RC-522-13', 'RC-522-13-reader', 4),
-('RC-522-14', 'RC-522-14-reader', 4),
-('RC-522-15', 'RC-522-15-reader', 4),
-('RC-522-16', 'RC-522-16-reader', 4);
+('RC-522-13', 'RC-522-13-reader', 13),
+('RC-522-14', 'RC-522-14-reader', 14),
+('RC-522-15', 'RC-522-15-reader', 15),
+('RC-522-16', 'RC-522-16-reader', 16);
 
 INSERT INTO reader (id, title, sector_id) VALUES
-('RC-522-17', 'RC-522-17-reader', 5),
-('RC-522-18', 'RC-522-18-reader', 5),
-('RC-522-19', 'RC-522-19-reader', 5),
-('RC-522-20', 'RC-522-20-reader', 5);
+('RC-522-17', 'RC-522-17-reader', 17),
+('RC-522-18', 'RC-522-18-reader', 18),
+('RC-522-19', 'RC-522-19-reader', 19),
+('RC-522-20', 'RC-522-20-reader', 20);
 
 INSERT INTO device (mac_address, created_at, title, uuid, shelf_id) VALUES
 ('80:8D:8A:8E:BE:88', '2019-03-08 08:01:25','esp-80', '6e3974b7-5032-46d6-a33d-ac74a65fc694', 1),
