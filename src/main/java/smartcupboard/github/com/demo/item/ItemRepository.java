@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Long>, JpaSpecificationExecutor<Item> {
 
-    @Query(value = "SELECT item.* FROM item, item_history," +
+    @Query(value = "SELECT DISTINCT item.* FROM item, item_history," +
 
             "(SELECT item_history.sector_id, MAX(created_at) as created_at " +
             "FROM item_history WHERE item_history.sector_id IN :sectors " +

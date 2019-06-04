@@ -1,6 +1,3 @@
-DROP SCHEMA PUBLIC CASCADE;
-CREATE SCHEMA PUBLIC;
-
 INSERT INTO cupboard (title) VALUES
 ('physics laboratory'),
 ('chemistry laboratory'),

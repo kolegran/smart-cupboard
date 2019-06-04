@@ -10,13 +10,13 @@ public class ItemSimpleDto {
     private final String title;
     private final Timestamp createdAt;
     private final String rfid;
-    private final ItemStatus itemStatuses;
+    private final ItemStatus itemStatus;
 
     public ItemSimpleDto(Item item) {
         this.id = item.getId();
         this.title = item.getTitle();
         this.createdAt = item.getCreatedAt();
         this.rfid = item.getRfid();
-        this.itemStatuses = item.getStatus();
+        this.itemStatus = item.getStatus();
     }
 }

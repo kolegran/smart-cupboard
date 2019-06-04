@@ -69,7 +69,7 @@ public class DeviceService {
                     Item item = new Item();
 
                     item.setRfid(rd);
-                    item.setTitle("New");
+                    item.setTitle("UNKNOWN");
                     item.setCreatedAt(new Timestamp(new Date().getTime()));
                     item.setStatus(ItemStatus.PUT);
 
