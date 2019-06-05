@@ -5,8 +5,6 @@ import smartcupboard.github.com.demo.cupboard.shelf.sector.SectorDto;
 import smartcupboard.github.com.demo.item.ItemSimpleDto;
 import smartcupboard.github.com.demo.user.UserSimpleDto;
 
-import java.sql.Timestamp;
-
 @Getter
 public class ItemHistoryDto extends ItemHistorySimpleDto {
     private final ItemSimpleDto item;
