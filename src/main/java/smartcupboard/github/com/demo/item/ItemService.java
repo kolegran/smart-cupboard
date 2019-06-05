@@ -45,7 +45,10 @@ public class ItemService {
 
     @Transactional
     public ItemDto update(UpdateItemCommand command, Long itemId) {
-        return null;
+        Item item = itemRepository.getOne(itemId);
+        item.setTitle(command.getTitle());
+
+        return new ItemDto(itemRepository.save(item));
     }
 
     @Transactional
