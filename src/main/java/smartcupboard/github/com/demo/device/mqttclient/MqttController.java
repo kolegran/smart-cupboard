@@ -11,15 +11,13 @@ import smartcupboard.github.com.demo.device.DeviceSimpleDto;
 import smartcupboard.github.com.demo.device.EventDeviceCommand;
 import smartcupboard.github.com.demo.device.RegistrationDeviceCommand;
 
-import javax.validation.Valid;
-
 @Component
 @RequiredArgsConstructor
-@Valid
 public class MqttController {
     private final DeviceTransport deviceTransport = new DeviceTransport();
 
     private final DeviceService deviceService;
+    private final JsonValidator jsonValidator;
 
     @EventListener(ApplicationReadyEvent.class)
     public void onLoad() {
@@ -33,7 +31,9 @@ public class MqttController {
             this.deviceTransport.getClient().subscribe("esp/#", (topic, message) -> {
                 try {
                     if (topic.contains("/event")) {
-                        this.deviceService.addEvents(new ObjectMapper().readValue(message.toString(), EventDeviceCommand.class));
+                        EventDeviceCommand eventDeviceCommand = new ObjectMapper().readValue(message.toString(), EventDeviceCommand.class);
+                        jsonValidator.validate(eventDeviceCommand);
+                        this.deviceService.addEvents(eventDeviceCommand);
                         this.deviceTransport.getClient().publish("esp/success", new MqttMessage(new ObjectMapper().writeValueAsBytes("Data was recorded")));
                     } else if (topic.contains("/registration")) {
                         DeviceSimpleDto deviceSimpleDto = deviceService.registration(new ObjectMapper().readValue(message.toString(), RegistrationDeviceCommand.class));
