@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import smartcupboard.github.com.demo.cupboard.shelf.ShelfRepository;
 import smartcupboard.github.com.demo.cupboard.shelf.sector.Sector;
 import smartcupboard.github.com.demo.cupboard.shelf.sector.SectorRepository;
 import smartcupboard.github.com.demo.item.Item;
@@ -29,6 +30,7 @@ public class DeviceService {
     private final ItemRepository itemRepository;
     private final ReaderRepository readerRepository;
     private final ItemHistoryRepository itemHistoryRepository;
+    private final ShelfRepository shelfRepository;
 
     @Transactional
     public DeviceSimpleDto registration(RegistrationDeviceCommand command) {
@@ -128,7 +130,11 @@ public class DeviceService {
 
     @Transactional
     public DeviceSimpleDto update(String deviceId, UpdateDeviceCommand command) {
-        return null;
+        Device device = deviceRepository.getOne(deviceId);
+        device.setTitle(command.getTitle());
+        device.setShelf(shelfRepository.getOne(command.getShelfId()));
+
+        return new DeviceSimpleDto(deviceRepository.save(device));
     }
 
     @Transactional
