@@ -11,8 +11,11 @@ import smartcupboard.github.com.demo.device.DeviceSimpleDto;
 import smartcupboard.github.com.demo.device.EventDeviceCommand;
 import smartcupboard.github.com.demo.device.RegistrationDeviceCommand;
 
+import javax.validation.Valid;
+
 @Component
 @RequiredArgsConstructor
+@Valid
 public class MqttController {
     private final DeviceTransport deviceTransport = new DeviceTransport();
 
