@@ -48,7 +48,7 @@ public class DeviceService {
     }
 
     @Transactional
-    public void addEvents(EventDeviceCommand command) throws Exception {
+    public void addEvents(EventDeviceCommand command) {
         Device device = deviceRepository.getOne(command.getDeviceId());
 /*
         if (!command.getUuid().equals(device.getUuid().toString())) {

@@ -8,7 +8,7 @@ import smartcupboard.github.com.demo.user.UserSimpleDto;
 @Getter
 public class ItemHistoryDto extends ItemHistorySimpleDto {
     private final ItemSimpleDto item;
-    private final UserSimpleDto user;
+    //private final UserSimpleDto user;
     private final SectorDto sector;
 
     public ItemHistoryDto(ItemHistory itemHistory) {
@@ -16,6 +16,6 @@ public class ItemHistoryDto extends ItemHistorySimpleDto {
 
         this.item = new ItemSimpleDto(itemHistory.getItem());
         this.sector = new SectorDto(itemHistory.getSector());
-        this.user = new UserSimpleDto(itemHistory.getUser());
+        //this.user = new UserSimpleDto(itemHistory.getUser());
     }
 }
