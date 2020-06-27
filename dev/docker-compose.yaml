@@ -4,6 +4,8 @@ services:
     image: postgres:10
     environment:
       POSTGRES_DB: smart-cupboard
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
     volumes:
       - "./data:/var/lib/postgresql/data/"
     ports:
