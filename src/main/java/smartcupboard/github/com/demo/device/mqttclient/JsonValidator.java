@@ -7,6 +7,7 @@ import smartcupboard.github.com.demo.device.ReaderData;
 
 @Component
 public class JsonValidator {
+
     public void validate(EventDeviceCommand eventDeviceCommand) {
         for (ReaderData reader : eventDeviceCommand.getReaders()) {
             for (ItemData item : reader.getItems()) {

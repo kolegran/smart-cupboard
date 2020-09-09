@@ -15,9 +15,9 @@ public class CupboardService {
     @Transactional(readOnly = true)
     public List<CupboardSimpleDto> getAll() {
         return cupboardRepository.findAll()
-                .stream()
-                .map(CupboardSimpleDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(CupboardSimpleDto::new)
+            .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
@@ -27,22 +27,21 @@ public class CupboardService {
 
     @Transactional
     public CupboardDto create(CreateUpdateCupboardCommand command) {
-        Cupboard cupboard = new Cupboard();
-        cupboard.setTitle(command.getTitle());
-
-        return new CupboardDto(cupboardRepository.save(cupboard));
+        return saveCupboard(new Cupboard(), command);
     }
 
     @Transactional
     public CupboardDto update(Long cupboardId, CreateUpdateCupboardCommand command) {
-        Cupboard cupboard = cupboardRepository.getOne(cupboardId);
-        cupboard.setTitle(command.getTitle());
-
-        return new CupboardDto(cupboardRepository.save(cupboard));
+        return saveCupboard(cupboardRepository.getOne(cupboardId), command);
     }
 
     @Transactional
     public void deleteById(Long cupboardId) {
         cupboardRepository.deleteById(cupboardId);
+    }
+
+    private CupboardDto saveCupboard(Cupboard cupboard, CreateUpdateCupboardCommand command) {
+        cupboard.setTitle(command.getTitle());
+        return new CupboardDto(cupboardRepository.save(cupboard));
     }
 }

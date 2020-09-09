@@ -9,5 +9,4 @@ public class SmartCupboardApplication {
     public static void main(String[] args) {
         SpringApplication.run(SmartCupboardApplication.class, args);
     }
-
 }

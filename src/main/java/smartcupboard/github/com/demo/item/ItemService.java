@@ -25,9 +25,9 @@ public class ItemService {
     @Transactional(readOnly = true)
     public List<ItemSimpleDto> getAll() {
         return itemRepository.findAll()
-                .stream()
-                .map(ItemSimpleDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(ItemSimpleDto::new)
+            .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
@@ -38,16 +38,15 @@ public class ItemService {
     @Transactional(readOnly = true)
     public List<ItemHistoryDto> getHistory(Long itemId) {
         return itemHistoryRepository.findByItemId(itemId)
-                .stream()
-                .map(ItemHistoryDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(ItemHistoryDto::new)
+            .collect(Collectors.toList());
     }
 
     @Transactional
     public ItemDto update(UpdateItemCommand command, Long itemId) {
-        Item item = itemRepository.getOne(itemId);
+        final Item item = itemRepository.getOne(itemId);
         item.setTitle(command.getTitle());
-
         return new ItemDto(itemRepository.save(item));
     }
 
@@ -58,12 +57,11 @@ public class ItemService {
 
     @Transactional(readOnly = true)
     public List<ItemExistDto> getAllItems(Long shelfId) {
-        List<Sector> sectors = sectorRepository.findByShelfId(shelfId);
-        List<Item> items = itemRepository.findAllItems(sectors);
-
+        final List<Sector> sectors = sectorRepository.findByShelfId(shelfId);
+        final List<Item> items = itemRepository.findAllItems(sectors);
         return items.stream()
-                .map(obj -> new ItemExistDto(obj, Iterables.getLast(obj.getItemHistoryList()).getSector()))
-                .collect(Collectors.toList());
+            .map(obj -> new ItemExistDto(obj, Iterables.getLast(obj.getItemHistoryList()).getSector()))
+            .collect(Collectors.toList());
     }
 
     @Transactional

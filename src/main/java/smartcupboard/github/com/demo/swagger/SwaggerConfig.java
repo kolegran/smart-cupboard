@@ -1,4 +1,4 @@
-package smartcupboard.github.com.demo.util;
+package smartcupboard.github.com.demo.swagger;
 
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
@@ -16,9 +16,9 @@ public class SwaggerConfig implements WebMvcConfigurer {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
-                .paths(PathSelectors.any())
-                .build();
+            .select()
+            .apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
+            .paths(PathSelectors.any())
+            .build();
     }
 }

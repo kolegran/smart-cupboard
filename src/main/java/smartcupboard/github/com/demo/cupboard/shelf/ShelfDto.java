@@ -16,13 +16,11 @@ public class ShelfDto extends ShelfSimpleDto {
 
     public ShelfDto(Shelf shelf) {
         super(shelf);
-
         this.cupboard = new CupboardSimpleDto(shelf.getCupboard());
         this.device = new DeviceSimpleDto(shelf.getDevice());
-
         this.sectors = shelf.getSectors()
-                .stream()
-                .map(SectorDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(SectorDto::new)
+            .collect(Collectors.toList());
     }
 }

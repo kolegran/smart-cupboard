@@ -28,8 +28,10 @@ public class SectorController {
     }
 
     @PutMapping("/cupboards/{cupboardId}/shelfs/{shelfId}/sectors/{sectorId}")
-    public ResponseEntity<SectorDto> updateSectorById(@PathVariable Long sectorId,
-                                                      @RequestBody @Valid CreateUpdateSectorCommand command) {
+    public ResponseEntity<SectorDto> updateSectorById(
+        @PathVariable Long sectorId,
+        @RequestBody @Valid CreateUpdateSectorCommand command
+    ) {
         return ResponseEntity.ok(sectorService.updateById(sectorId, command));
     }
 

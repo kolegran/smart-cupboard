@@ -12,10 +12,9 @@ public class UserDto extends UserSimpleDto {
 
     public UserDto(User user) {
         super(user);
-
         this.cupboards = user.getCupboards()
-                .stream()
-                .map(CupboardSimpleDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(CupboardSimpleDto::new)
+            .collect(Collectors.toList());
     }
 }

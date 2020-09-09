@@ -28,8 +28,10 @@ public class ShelfController {
     }
 
     @PutMapping("/cupboards/{cupboardId}/shelfs/{shelfId}")
-    public ResponseEntity<ShelfDto> updateShelfById(@PathVariable Long shelfId,
-                                                @RequestBody @Valid CreateUpdateShelfCommand command) {
+    public ResponseEntity<ShelfDto> updateShelfById(
+        @PathVariable Long shelfId,
+        @RequestBody @Valid CreateUpdateShelfCommand command
+    ) {
         return ResponseEntity.ok(shelfService.updateById(shelfId, command));
     }
 

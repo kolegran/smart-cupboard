@@ -6,11 +6,10 @@ import smartcupboard.github.com.demo.cupboard.shelf.sector.SectorDto;
 
 @Getter
 public class ItemExistDto extends ItemSimpleDto {
-    private SectorDto sector;
+    private final SectorDto sector;
 
     public ItemExistDto(Item item, Sector sector) {
         super(item);
-
         this.sector = new SectorDto(sector);
     }
 }

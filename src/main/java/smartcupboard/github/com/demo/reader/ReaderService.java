@@ -17,9 +17,9 @@ public class ReaderService {
     @Transactional(readOnly = true)
     public List<ReaderDto> getAll() {
         return readerRepository.findAll()
-                .stream()
-                .map(ReaderDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(ReaderDto::new)
+            .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
@@ -29,24 +29,22 @@ public class ReaderService {
 
     @Transactional
     public ReaderDto create(CreateUpdateReaderCommand command) {
-        Reader reader = new Reader();
-
-        reader.setTitle(command.getTitle());
-        reader.setSector(sectorRepository.getOne(command.getSectorId()));
-        return new ReaderDto(readerRepository.save(reader));
+        return saveReader(new Reader(), command);
     }
 
     @Transactional
     public ReaderDto updateById(String readerId, CreateUpdateReaderCommand command) {
-        Reader reader = readerRepository.getOne(readerId);
-
-        reader.setTitle(command.getTitle());
-        reader.setSector(sectorRepository.getOne(command.getSectorId()));
-        return new ReaderDto(readerRepository.save(reader));
+        return saveReader(readerRepository.getOne(readerId), command);
     }
 
     @Transactional
     public void deleteById(String readerId) {
         readerRepository.deleteById(readerId);
+    }
+
+    private ReaderDto saveReader(Reader reader, CreateUpdateReaderCommand command) {
+        reader.setTitle(command.getTitle());
+        reader.setSector(sectorRepository.getOne(command.getSectorId()));
+        return new ReaderDto(readerRepository.save(reader));
     }
 }

@@ -34,14 +34,12 @@ public class DeviceService {
 
     @Transactional
     public DeviceSimpleDto registration(RegistrationDeviceCommand command) {
-        Device device = deviceRepository.findById(command.getMacAddress()).orElseGet(() -> {
-            Device newDevice = new Device();
-
+        final Device device = deviceRepository.findById(command.getMacAddress()).orElseGet(() -> {
+            final Device newDevice = new Device();
             newDevice.setMacAddress(command.getMacAddress());
             newDevice.setUuid(UUID.randomUUID());
             newDevice.setTitle(command.getTitle());
             newDevice.setCreatedAt(new Timestamp(new Date().getTime()));
-
             return deviceRepository.save(newDevice);
         });
         return new DeviceSimpleDto(device);
@@ -49,32 +47,32 @@ public class DeviceService {
 
     @Transactional
     public void addEvents(EventDeviceCommand command) {
-        Device device = deviceRepository.getOne(command.getDeviceId());
+        final Device device = deviceRepository.getOne(command.getDeviceId());
 /*
         if (!command.getUuid().equals(device.getUuid().toString())) {
             throw new Exception("Device is unauthorized");
         }
 */
-        Long shelfId = device.getShelf().getId();
+        final Long shelfId = device.getShelf().getId();
         List<Item> lastItems = itemRepository.findAllItems(sectorRepository.findByShelfId(shelfId));
-        List<String> allRfids = itemRepository.findAll().stream().map(Item::getRfid).collect(Collectors.toList());
+        final List<String> allRfids = itemRepository.findAll().stream()
+            .map(Item::getRfid)
+            .collect(Collectors.toList());
 
         for (ReaderData reader : command.getReaders()) {
-            List<String> rfids = reader.getItems()
+            final List<String> rfids = reader.getItems()
                     .stream()
                     .map(ItemData::getRfid)
                     .collect(Collectors.toList());
 
-            List<Item> newItems = new ArrayList<>();
+            final List<Item> newItems = new ArrayList<>();
             for (String rd : rfids) {
                 if (!allRfids.contains(rd)) {
-                    Item item = new Item();
-
+                    final Item item = new Item();
                     item.setRfid(rd);
                     item.setTitle("UNKNOWN");
                     item.setCreatedAt(new Timestamp(new Date().getTime()));
                     item.setStatus(ItemStatus.PUT);
-
                     newItems.add(item);
                 }
             }
@@ -84,22 +82,21 @@ public class DeviceService {
             lastItems.removeAll(items);
 
             items = items
-                    .stream()
-                    .peek(object -> object.setStatus(ItemStatus.PUT))
-                    .collect(Collectors.toList());
+                .stream()
+                .peek(object -> object.setStatus(ItemStatus.PUT))
+                .collect(Collectors.toList());
 
             itemRepository.saveAll(items);
 
-            Sector sector = readerRepository.getOne(reader.getReaderId()).getSector();
+            final Sector sector = readerRepository.getOne(reader.getReaderId()).getSector();
             items.addAll(newItems);
-            List<ItemHistory> itemHistoryList = items
+            final List<ItemHistory> itemHistoryList = items
                     .stream()
                     .map(obj -> {
-                        ItemHistory itemHistory = new ItemHistory();
+                        final ItemHistory itemHistory = new ItemHistory();
                         itemHistory.setCreatedAt(new Timestamp(new Date().getTime()));
                         itemHistory.setSector(sector);
                         itemHistory.setItem(obj);
-
                         return itemHistory;
                     })
                     .collect(Collectors.toList());
@@ -118,9 +115,9 @@ public class DeviceService {
     @Transactional(readOnly = true)
     public List<DeviceSimpleDto> getAll() {
         return deviceRepository.findAll()
-                .stream()
-                .map(DeviceSimpleDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(DeviceSimpleDto::new)
+            .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
@@ -130,10 +127,9 @@ public class DeviceService {
 
     @Transactional
     public DeviceSimpleDto update(String deviceId, UpdateDeviceCommand command) {
-        Device device = deviceRepository.getOne(deviceId);
+        final Device device = deviceRepository.getOne(deviceId);
         device.setTitle(command.getTitle());
         device.setShelf(shelfRepository.getOne(command.getShelfId()));
-
         return new DeviceSimpleDto(deviceRepository.save(device));
     }
 
@@ -143,10 +139,9 @@ public class DeviceService {
     }
 
     public MqttMessage createMessage(DeviceSimpleDto deviceSimpleDto) throws Exception {
-        MqttMessage message = new MqttMessage(new ObjectMapper().writeValueAsBytes(deviceSimpleDto));
+        final MqttMessage message = new MqttMessage(new ObjectMapper().writeValueAsBytes(deviceSimpleDto));
         message.setQos(2);
         message.setRetained(false);
-
         return message;
     }
 }

@@ -28,7 +28,10 @@ public class CupboardController {
     }
 
     @PutMapping("/cupboards/{cupboardId}")
-    public ResponseEntity<CupboardDto> updateCupboard(@PathVariable Long cupboardId, @RequestBody @Valid CreateUpdateCupboardCommand command) {
+    public ResponseEntity<CupboardDto> updateCupboard(
+        @PathVariable Long cupboardId,
+        @RequestBody @Valid CreateUpdateCupboardCommand command
+    ) {
         return ResponseEntity.ok(cupboardService.update(cupboardId, command));
     }
 

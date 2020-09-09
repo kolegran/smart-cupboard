@@ -28,8 +28,10 @@ public class ReaderController {
     }
 
     @PutMapping("/readers/{readerId}")
-    public ResponseEntity<ReaderDto> updateReaderById(@PathVariable String readerId,
-                                                    @RequestBody @Valid CreateUpdateReaderCommand command) {
+    public ResponseEntity<ReaderDto> updateReaderById(
+        @PathVariable String readerId,
+        @RequestBody @Valid CreateUpdateReaderCommand command
+    ) {
         return ResponseEntity.ok(readerService.updateById(readerId, command));
     }
 

@@ -11,7 +11,6 @@ public class SectorDto extends SectorSimpleDto {
 
     public SectorDto(Sector sector) {
         super(sector);
-
         this.shelf = new ShelfSimpleDto(sector.getShelf());
         this.reader = new ReaderSimpleDto(sector.getReader());
     }

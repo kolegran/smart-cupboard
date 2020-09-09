@@ -27,16 +27,15 @@ public class MqttController {
     public void subscribeOnTopic() {
         try {
             this.deviceTransport.setConnection();
-
             this.deviceTransport.getClient().subscribe("esp/#", (topic, message) -> {
                 try {
                     if (topic.contains("/event")) {
-                        EventDeviceCommand eventDeviceCommand = new ObjectMapper().readValue(message.toString(), EventDeviceCommand.class);
+                        final EventDeviceCommand eventDeviceCommand = new ObjectMapper().readValue(message.toString(), EventDeviceCommand.class);
                         jsonValidator.validate(eventDeviceCommand);
                         this.deviceService.addEvents(eventDeviceCommand);
                         this.deviceTransport.getClient().publish("esp/success", new MqttMessage(new ObjectMapper().writeValueAsBytes("Data was recorded")));
                     } else if (topic.contains("/registration")) {
-                        DeviceSimpleDto deviceSimpleDto = deviceService.registration(new ObjectMapper().readValue(message.toString(), RegistrationDeviceCommand.class));
+                        final DeviceSimpleDto deviceSimpleDto = deviceService.registration(new ObjectMapper().readValue(message.toString(), RegistrationDeviceCommand.class));
                         this.deviceTransport.getClient().publish("esp/token", deviceService.createMessage(deviceSimpleDto));
                     }
                 } catch (Exception e) {

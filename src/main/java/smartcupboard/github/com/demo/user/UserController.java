@@ -30,14 +30,18 @@ public class UserController {
     }
 
     @PutMapping("/users/current")
-    public ResponseEntity<UserDto> updateCurrentUserById(@ApiIgnore UserRequestContext context,
-                                                  @RequestBody @Valid UpdateUserInfoCommand command) {
+    public ResponseEntity<UserDto> updateCurrentUserById(
+        @ApiIgnore UserRequestContext context,
+        @RequestBody @Valid UpdateUserInfoCommand command
+    ) {
         return ResponseEntity.ok(userService.updateUserById(context, command));
     }
 
     @PostMapping("/users/current/change-password")
-    public ResponseEntity<Void> changeUserPassword(@ApiIgnore UserRequestContext context,
-                                                   @RequestBody @Valid ChangePasswordCommand command) {
+    public ResponseEntity<Void> changeUserPassword(
+        @ApiIgnore UserRequestContext context,
+        @RequestBody @Valid ChangePasswordCommand command
+    ) {
         userService.changePassword(context, command);
         return ResponseEntity.ok().build();
     }
@@ -60,8 +64,10 @@ public class UserController {
     }
 
     @PutMapping("/users/{userId}")
-    public ResponseEntity<UserDto> updateUserById(@PathVariable Long userId,
-                                                  @RequestBody @Valid CreateUpdateUserCommand command) {
+    public ResponseEntity<UserDto> updateUserById(
+        @PathVariable Long userId,
+        @RequestBody @Valid CreateUpdateUserCommand command
+    ) {
         return ResponseEntity.ok(userService.updateById(userId, command));
     }
 

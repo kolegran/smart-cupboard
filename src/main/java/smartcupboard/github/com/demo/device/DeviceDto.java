@@ -11,7 +11,8 @@ public class DeviceDto extends DeviceSimpleDto {
 
     public DeviceDto(Device device) {
         super(device);
-
-        this.shelf = Optional.ofNullable(device.getShelf()).isPresent() ? new ShelfSimpleDto(device.getShelf()) : null;
+        this.shelf = Optional.ofNullable(device.getShelf()).isPresent() ?
+            new ShelfSimpleDto(device.getShelf())
+            : null;
     }
 }

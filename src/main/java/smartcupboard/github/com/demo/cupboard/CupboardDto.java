@@ -16,12 +16,12 @@ public class CupboardDto extends CupboardSimpleDto {
         super(cupboard);
 
         this.shelves = cupboard.getShelves()
-                .stream()
-                .map(ShelfSimpleDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(ShelfSimpleDto::new)
+            .collect(Collectors.toList());
         this.users = cupboard.getUsers()
-                .stream()
-                .map(UserSimpleDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(UserSimpleDto::new)
+            .collect(Collectors.toList());
     }
 }

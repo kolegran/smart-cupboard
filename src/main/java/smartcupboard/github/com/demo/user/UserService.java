@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public Object obtainToken(ObtainTokenCommand command) {
         return null;
@@ -32,12 +32,7 @@ public class UserService {
 
     @Transactional
     public UserDto create(CreateUpdateUserCommand command) {
-        User user = new User();
-        user.setFirstName(command.getFirstName());
-        user.setLastName(command.getLastName());
-        user.setEmail(command.getEmail());
-
-        return new UserDto(userRepository.save(user));
+        return saveUser(new User(), command);
     }
 
     @Transactional(readOnly = true)
@@ -48,24 +43,25 @@ public class UserService {
     @Transactional(readOnly = true)
     public List<UserSimpleDto> getAll() {
         return userRepository.findAll()
-                .stream()
-                .map(UserSimpleDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(UserSimpleDto::new)
+            .collect(Collectors.toList());
     }
 
     @Transactional
     public UserDto updateById(Long userId, CreateUpdateUserCommand command) {
-        User user = userRepository.getOne(userId);
-
-        user.setFirstName(command.getFirstName());
-        user.setLastName(command.getLastName());
-        user.setEmail(command.getEmail());
-
-        return new UserDto(userRepository.save(user));
+        return saveUser(userRepository.getOne(userId), command);
     }
 
     @Transactional
     public void deleteById(Long userId) {
         userRepository.deleteById(userId);
+    }
+
+    private UserDto saveUser(User user, CreateUpdateUserCommand command) {
+        user.setFirstName(command.getFirstName());
+        user.setLastName(command.getLastName());
+        user.setEmail(command.getEmail());
+        return new UserDto(userRepository.save(user));
     }
 }

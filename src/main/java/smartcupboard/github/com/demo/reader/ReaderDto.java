@@ -9,7 +9,6 @@ public class ReaderDto extends ReaderSimpleDto {
 
     public ReaderDto(Reader reader) {
         super(reader);
-
         this.sector = new SectorSimpleDto(reader.getSector());
     }
 }

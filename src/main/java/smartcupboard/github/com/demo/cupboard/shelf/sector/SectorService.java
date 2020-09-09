@@ -19,9 +19,9 @@ public class SectorService {
     @Transactional(readOnly = true)
     public List<SectorSimpleDto> getAll() {
         return sectorRepository.findAll()
-                .stream()
-                .map(SectorDto::new)
-                .collect(Collectors.toList());
+            .stream()
+            .map(SectorDto::new)
+            .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
@@ -31,26 +31,23 @@ public class SectorService {
 
     @Transactional
     public SectorDto create(CreateUpdateSectorCommand command) {
-        Sector sector = new Sector();
-        sector.setTitle(command.getTitle());
-        sector.setShelf(shelfRepository.getOne(command.getShelfId()));
-        sector.setReader(readerRepository.getOne(command.getReaderId()));
-
-        return new SectorDto(sectorRepository.save(sector));
+        return saveSector(new Sector(), command);
     }
 
     @Transactional
     public SectorDto updateById(Long sectorId, CreateUpdateSectorCommand command) {
-        Sector sector = sectorRepository.getOne(sectorId);
-        sector.setTitle(command.getTitle());
-        sector.setShelf(shelfRepository.getOne(command.getShelfId()));
-        sector.setReader(readerRepository.getOne(command.getReaderId()));
-
-        return new SectorDto(sectorRepository.save(sector));
+        return saveSector(sectorRepository.getOne(sectorId), command);
     }
 
     @Transactional
     public void deleteById(Long sectorId) {
         sectorRepository.deleteById(sectorId);
+    }
+
+    private SectorDto saveSector(Sector sector, CreateUpdateSectorCommand command) {
+        sector.setTitle(command.getTitle());
+        sector.setShelf(shelfRepository.getOne(command.getShelfId()));
+        sector.setReader(readerRepository.getOne(command.getReaderId()));
+        return new SectorDto(sectorRepository.save(sector));
     }
 }
