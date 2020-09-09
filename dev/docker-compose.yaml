@@ -1,4 +1,9 @@
 version: '3.1'
+
+networks:
+  smart-cupboard-net:
+    driver: bridge
+
 services:
   smart-cupboard-pg:
     image: postgres:10
@@ -6,7 +11,19 @@ services:
       POSTGRES_DB: smart-cupboard
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
-    volumes:
-      - "./data:/var/lib/postgresql/data/"
+#    TODO kolegran 2020/9/9 Resolve mounting problem
+#    volumes:
+#      - ./data:/var/lib/postgresql/data
     ports:
       - 5435:5432
+    networks:
+      - smart-cupboard-net
+
+  mosquitto:
+    image: toke/mosquitto
+    container_name: mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001
+    networks:
+      - smart-cupboard-net

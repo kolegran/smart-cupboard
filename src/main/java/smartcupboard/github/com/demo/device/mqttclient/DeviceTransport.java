@@ -18,7 +18,7 @@ public class DeviceTransport {
 
     public void setConnection() throws MqttException {
         MqttDefaultFilePersistence dataStore = new MqttDefaultFilePersistence("dev/pahodata" + "/" + clientId);
-        String mqttHost = System.getenv().getOrDefault("MQTT_HOST", "mosquitto-broker");
+        String mqttHost = System.getenv().getOrDefault("MQTT_HOST", "localhost");
         String mqttPort = System.getenv().getOrDefault("MQTT_PORT", "1883");
         client = new MqttClient("tcp://" + mqttHost + ":" + mqttPort, clientId, dataStore);
 
